@@ -1,0 +1,12 @@
+
+agregar fotos
+
+
+------ parte mas técnica----
+
+. crear un nuevo html para proyectos y equipo. El INICIO debe ser lo que vemos en el index, el scroll en el header no debe moverse hasta que seleccionemos una de las opciones entre  proyectos y equipo y salemos a otro html 
+
+. En conoce al equipo completar el carrusel con las directoras generales + la comisión directiva, luego al apretar sobre alguna cara, conducir al nuevo HTML para equipo
+. Cuando estoy entre adn y el video no marca ninguna seccion en el header, como si inicio solo fuese el video con el botond e campamentos 
+. El carrusel con los directivos debe conter 5 (aclarar quienes son direc generales y quien comiison directiva)
+. En proyectos acutalizar la informacion y poner como primero a 10-12, 13-15 y 16-18. Luego sumar Expo carreras, Filo, 22-26 y demas proyectos, podria ser hacer un carrusel

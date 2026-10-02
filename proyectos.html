@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos | LAGRAM</title>
+    <link rel="icon" type="image/png" href="assets/img/iso.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    
+    <link rel="stylesheet" href="assets/css/estilos.css">
+</head>
+<body>
+
+    
+   <header class="header">
+    <div class="header__contenedor">
+        <!-- Logo -->
+        <a href="index.html" class="header__logo-link">
+            <img src="assets/img/iso.png" alt="Logo de LAGRAM" class="header__logo">
+        </a>
+
+        <!-- Botón de Hamburguesa (Solo visible en mobile) -->
+        <button class="header__hamburguesa" id="menu-btn" aria-label="Abrir menú">
+            <span class="header__hamburguesa-linea"></span>
+            <span class="header__hamburguesa-linea"></span>
+            <span class="header__hamburguesa-linea"></span>
+        </button>
+
+        <!-- Navegación -->
+        <nav class="header__nav" id="menu-nav">
+            <ul class="header__menu">
+                <li><a href="index.html" class="header__link">Inicio</a></li>
+                <li><a href="proyectos.html" class="header__link">Proyectos</a></li>
+                <li><a href="equipo.html" class="header__link">Equipo</a></li>
+                <li><a href="#footer" class="header__link">Redes</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main class="pagina-proyectos">
+        
+        <!-- Cabecera de la página -->
+        <section class="proyectos-header">
+            <h1>Nuestros Eventos</h1>
+            <p>Un tiempo para desconectarte de todo y conectarte con lo que importa.</p>
+        </section>
+
+        <!-- ZONA VIP: Los 3 Campamentos Principales (Diseño Zig-Zag) -->
+        <section class="proyectos-vip">
+            
+            <!-- Campamento 10 a 12 (Imagen a la Izquierda) -->
+            <article class="proyecto-row" id="camp-10-12">
+                <div class="proyecto-row__imagen">
+                    <img src="assets/img/10-12.jpg" alt="Campamento 10 a 12">
+                </div>
+                <div class="proyecto-row__texto">
+                    <h2>Campamento 10 a 12</h2>
+                    <p>Un espacio diseñado a medida para sus primeras aventuras, enfocándonos en la integración, el trabajo en equipo y el inicio de su relación con Jesús.</p>
+                    <a href="#inscripcion" class="btn btn--primario">Inscribirme</a>
+                </div>
+            </article>
+
+            <!-- Campamento 13 a 15 (Imagen a la Derecha - Gracias a la clase --invertido) -->
+            <article class="proyecto-row proyecto-row--invertido" id="camp-13-15">
+                <div class="proyecto-row__imagen">
+                    <img src="assets/img/13-15.jpg" alt="Campamento 13 a 15">
+                </div>
+                <div class="proyecto-row__texto">
+                    <h2>Campamento 13 a 15</h2>
+                    <p>Dinámicas más profundas, tiempo de reflexión y actividades de alto impacto adaptadas a esta etapa clave de sus vidas.</p>
+                    <a href="#inscripcion" class="btn btn--primario">Inscribirme</a>
+                </div>
+            </article>
+
+            <!-- Campamento 16 a 18 (Imagen a la Izquierda) -->
+            <article class="proyecto-row" id="camp-16-18">
+                <div class="proyecto-row__imagen">
+                    <img src="assets/img/16-18.jpg" alt="Campamento 16 a 18">
+                </div>
+                <div class="proyecto-row__texto">
+                    <h2>Campamento 16 a 18</h2>
+                    <p>Este campamento desafía a los adolescentes a buscar su propia manera de experimentar la fe.</p>
+                    <a href="#inscripcion" class="btn btn--primario">Inscribirme</a>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- ZONA SECUNDARIA: Más iniciativas (Cuadrícula) -->
+            <section class="proyectos-secundarios">
+                <h3 class="proyectos-secundarios__titulo">Más iniciativas de LAGRAM</h3>
+                
+                <div class="grid-proyectos" id="grid-otros-proyectos">
+                    <!-- Tarjeta ExpoCarreras -->
+                    <div class="tarjeta-iniciativa">
+                        <div class="tarjeta-iniciativa__icono">🎓</div>
+                        <h4 class="tarjeta-iniciativa__titulo">ExpoCarreras</h4>
+                        <p class="tarjeta-iniciativa__texto">Orientación vocacional y charlas con profesionales para ayudarte a elegir tu futuro.</p>
+                    </div>
+
+                    <!-- Tarjeta Picnic LAGRAM -->
+                    <div class="tarjeta-iniciativa">
+                        <div class="tarjeta-iniciativa__icono">🧺</div>
+                        <h4 class="tarjeta-iniciativa__titulo">Picnic LAGRAM</h4>
+                        <p class="tarjeta-iniciativa__texto">Un día de reencuentro, juegos y tiempo al aire libre para disfrutar con toda la familia.</p>
+                    </div>
+
+                    <!-- Tarjeta Otras Salidas -->
+                    <div class="tarjeta-iniciativa">
+                        <div class="tarjeta-iniciativa__icono">🏕️</div>
+                        <h4 class="tarjeta-iniciativa__titulo">Salidas y Retiros</h4>
+                        <p class="tarjeta-iniciativa__texto">Eventos especiales durante el año para profundizar amistades y crecer juntos.</p>
+                    </div>
+                </div>
+            </section>
+
+    </main>
+
+
+    <footer class="footer" id="footer">
+        <div class="footer__contenedor">
+
+            <div class="footer__columna">
+                <img src="assets/img/iso.png" alt="Logo LAGRAM" class="footer__logo">
+                <p class="footer__descripcion">Acompañando a los adolescentes a crecer de manera integral, en una
+                    relación cercana y continua con Jesús.</p>
+            </div>
+
+            <div class="footer__columna">
+                <h4 class="footer__titulo">Navegación</h4>
+                <ul class="footer__links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="equipo.html">ADN en acción</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: El Mapa -->
+            <div class="footer__columna">
+                <h4 class="footer__titulo">¿Dónde son los campamentos?</h4>
+                <div class="footer__mapa">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3270.274318870614!2d-58.596475151065064!3d-34.949732598355894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcd87e0a44ce57%3A0x9e309571b2313253!2sParque%20Cristiano%20El%20Sembrador!5e0!3m2!1ses-419!2sar!4v1786031067845!5m2!1ses-419!2sar"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Columna 4: Redes y Contacto -->
+            <div class="footer__columna">
+                <h4 class="footer__titulo">Nuestras Redes</h4>
+
+                <!-- Mantenemos el modificador --vertical para que sigan apilados -->
+                <div class="footer__social footer__social--vertical">
+                    <a href="https://www.instagram.com/lagramoficial" target="_blank" aria-label="Instagram">
+                        <img src="assets/img/instagram.svg" alt="IG">
+                    </a>
+                    <a href="https://www.facebook.com/lagramoficial" target="_blank" aria-label="Facebook">
+                        <img src="assets/img/facebook-footer.svg" alt="FB">
+                    </a>
+                    <a href="https://wa.me/5491163765990" target="_blank" aria-label="WhatsApp">
+                        <img src="assets/img/whatsapp-footer.svg" alt="WhatsApp">
+                    </a>
+                    <a href="mailto:info@lagram.com.ar" aria-label="Enviar correo por Gmail">
+                        <img src="assets/img/gmail-footer.svg" alt="Gmail">
+                    </a>
+                    <!-- Nuevo ícono de Spotify (Asegurate de poner el link real de Lagram) -->
+                    <a href="https://open.spotify.com/user/lagramoficial?si=a2e627d1a4cd45a8" target="_blank" aria-label="Spotify">
+                        <img src="assets/img/spotify-footer.svg" alt="Spotify">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer__copyright">
+            <p>&copy; 2026 LAGRAM. Desarrollado por <a href="https://www.linkedin.com/in/valentín-himitian" target="_blank" style="color: inherit; text-decoration: none;">www.linkedin.com/in/valentín-himitian</a></p>
+        </div>
+    </footer>
+
+    
+</body>
+    <script src="js/script.js"></script>
+</html>

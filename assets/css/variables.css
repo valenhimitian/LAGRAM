@@ -1,0 +1,19 @@
+/* =========================================
+   IMPORTACIÓN DE FUENTES
+========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@800&display=swap');
+
+/* =========================================
+   VARIABLES GLOBALES
+========================================= */
+:root {
+    /* Paleta de Colores LAGRAM */
+    --color-primario: #FF9729; 
+    --color-secundario: #2DA6AE; 
+    --color-fondo: #FFFFFF; 
+    --color-texto: #222222; 
+
+    /* Tipografías */
+    --fuente-titulos: 'Poppins', sans-serif; 
+    --fuente-parrafos: 'Inter', sans-serif;
+}

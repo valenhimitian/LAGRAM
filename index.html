@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAGRAM</title>
+    <link rel="icon" type="image/png" href="assets/img/iso.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/variables.css">
+
+    <link rel="stylesheet" href="assets/css/estilos.css">
+</head>
+
+<body>
+
+
+ <header class="header">
+    <div class="header__contenedor">
+        <!-- Logo -->
+        <a href="index.html" class="header__logo-link">
+            <img src="assets/img/iso.png" alt="Logo de LAGRAM" class="header__logo">
+        </a>
+
+        <!-- Botón de Hamburguesa (Solo visible en mobile) -->
+        <button class="header__hamburguesa" id="menu-btn" aria-label="Abrir menú">
+            <span class="header__hamburguesa-linea"></span>
+            <span class="header__hamburguesa-linea"></span>
+            <span class="header__hamburguesa-linea"></span>
+        </button>
+
+        <!-- Navegación -->
+        <nav class="header__nav" id="menu-nav">
+            <ul class="header__menu">
+                <li><a href="index.html" class="header__link">Inicio</a></li>
+                <li><a href="proyectos.html" class="header__link">Proyectos</a></li>
+                <li><a href="equipo.html" class="header__link">Equipo</a></li>
+                <li><a href="#footer" class="header__link">Redes</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+    <section class="hero" id="inicio">
+
+        <video class="hero__video" autoplay loop muted playsinline poster="assets/hero-fallback.jpg">
+            <source src="assets/img/campamento-lagram.mp4" type="video/mp4">
+        </video>
+
+        <div class="hero__overlay"></div>
+
+        <!-- Contenido y texto principal -->
+        <div class="hero__contenido">
+            
+            <!-- NUEVO: Logo principal transparente sobre el video -->
+            <img src="assets/img/logo-hero.png" alt="Logo de LAGRAM" class="hero__logo-grande">
+
+            <h1 class="hero__subtitulo">Adolescentes que crecen de manera integral en una relación cercana y continua con
+                Jesús</h1>
+            
+            <a href="equipo.html" class="hero__boton">¡Conócenos!</a>
+        </div>
+
+    </section>
+
+    <!-- =========================================
+   SECCIÓN ADN (Valores Estáticos)
+========================================= -->
+<section class="adn" id="adn">
+    <div class="adn__header">
+        <h2>Nuestro ADN</h2>
+        <p>Como organización, tenemos una identidad que nos distingue que llamamos ADN y está compuesto por los siguientes elementos:</p>
+    </div>
+
+    <div class="adn__grid">
+        
+        <article class="adn__card">
+            <!-- Podés reemplazar los emojis por íconos SVG o FontAwesome después -->
+            <div class="adn__icono">💡</div>
+            <h3 class="adn__titulo">Innovación</h3>
+            <p class="adn__descripcion">Buscamos desarrollar programas que, por la propuesta en sí o por la manera en la que la realizamos, hagan un aporte significativo a los adolescentes.</p>
+        </article>
+
+        <article class="adn__card">
+            <div class="adn__icono">❤️</div>
+            <h3 class="adn__titulo">Pasión</h3>
+            <p class="adn__descripcion">Creemos que servir es un privilegio que motiva los más altos sacrificios.</p>
+        </article>
+
+        <article class="adn__card">
+            <div class="adn__icono">🌍</div>
+            <h3 class="adn__titulo">Amplitud</h3>
+            <p class="adn__descripcion">Nuestra propuesta conecta a la más alta diversidad alrededor de lo más sagrado que tenemos en común. Nos parecemos un poco a todos y mucho a nadie.</p>
+        </article>
+
+        <article class="adn__card">
+            <div class="adn__icono">🤝</div>
+            <h3 class="adn__titulo">Relaciones</h3>
+            <p class="adn__descripcion">Consideramos que la mejor forma de hacer las cosas es trabajando en equipo, en un clima de amistad. Todo lo que hacemos promueve la integración e interacción entre las personas.</p>
+        </article>
+
+        <article class="adn__card">
+            <div class="adn__icono">⭐</div>
+            <h3 class="adn__titulo">Excelencia</h3>
+            <p class="adn__descripcion">Todo nuestro trabajo está en permanente mejora. Creemos que la excelencia no es un objetivo sino la manera en la que hacemos todo.</p>
+        </article>
+
+    </div>
+</section>
+    <section class="proyectos" id="proyectos">
+        <div class="proyectos__contenedor">
+            <h2 class="proyectos__titulo-principal">Nuestros Proyectos</h2>
+
+            <div class="proyectos__grid" id="grid-proyectos"></div>
+
+        </div>
+    </section>
+    <section class="equipo" id="equipo">
+    <div class="equipo__contenedor">
+        <h2 class="equipo__titulo">Conocé al Equipo</h2>
+        <p class="equipo__descripcion">Los Directores Generales están acompañados por tres miembros representativos del Equipo de Trabajo elegidos por nuestros voluntarios.</p>
+
+        <div class="carrusel">
+            <button class="carrusel__btn carrusel__btn--prev" id="btn-prev" aria-label="Anterior">❮</button>
+
+            <div class="carrusel__riel" id="carrusel-riel">
+
+                <!-- Directoras Generales -->
+                <article class="miembro">
+                    <img src="assets/img/luli.png" alt="Luciana Valle" class="miembro__foto">
+                    <h3 class="miembro__nombre">Luciana Valle</h3>
+                    <p class="miembro__rol">Directora General</p>
+                </article>
+
+                <article class="miembro">
+                    <img src="assets/img/juli.png" alt="Julieta Torralba" class="miembro__foto">
+                    <h3 class="miembro__nombre">Julieta Torralba</h3>
+                    <p class="miembro__rol">Directora General</p>
+                </article>
+
+                <!-- Comisión Directiva -->
+                <article class="miembro">
+                    <img src="assets/img/cami.png" alt="Camila Justo" class="miembro__foto">
+                    <h3 class="miembro__nombre">Camila Justo</h3>
+                    <p class="miembro__rol">Comisión Directiva</p>
+                </article>
+
+                <article class="miembro">
+                    <img src="assets/img/turri.png" alt="Lucas Turriaga" class="miembro__foto">
+                    <h3 class="miembro__nombre">Lucas Turriaga</h3>
+                    <p class="miembro__rol">Comisión Directiva</p>
+                </article>
+
+                <article class="miembro">
+                    <img src="assets/img/martu.png" alt="Martina Valle" class="miembro__foto">
+                    <h3 class="miembro__nombre">Martina Valle</h3>
+                    <p class="miembro__rol">Comisión Directiva</p>
+                </article>
+
+            </div>
+
+            <button class="carrusel__btn carrusel__btn--next" id="btn-next" aria-label="Siguiente">❯</button>
+        </div>
+    </div>
+</section>
+
+   <footer class="footer" id="footer">
+        <div class="footer__contenedor">
+
+            <div class="footer__columna">
+                <img src="assets/img/iso.png" alt="Logo LAGRAM" class="footer__logo">
+                <p class="footer__descripcion">Acompañando a los adolescentes a crecer de manera integral, en una
+                    relación cercana y continua con Jesús.</p>
+            </div>
+
+            <div class="footer__columna">
+                <h4 class="footer__titulo">Navegación</h4>
+                <ul class="footer__links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="equipo.html">ADN en acción</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: El Mapa -->
+            <div class="footer__columna">
+                <h4 class="footer__titulo">¿Dónde son los campamentos?</h4>
+                <div class="footer__mapa">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3270.274318870614!2d-58.596475151065064!3d-34.949732598355894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcd87e0a44ce57%3A0x9e309571b2313253!2sParque%20Cristiano%20El%20Sembrador!5e0!3m2!1ses-419!2sar!4v1786031067845!5m2!1ses-419!2sar"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Columna 4: Redes y Contacto -->
+            <div class="footer__columna">
+                <h4 class="footer__titulo">Nuestras Redes</h4>
+
+                <!-- Mantenemos el modificador --vertical para que sigan apilados -->
+                <div class="footer__social footer__social--vertical">
+                    <a href="https://www.instagram.com/lagramoficial" target="_blank" aria-label="Instagram">
+                        <img src="assets/img/instagram.svg" alt="IG">
+                    </a>
+                    <a href="https://www.facebook.com/lagramoficial" target="_blank" aria-label="Facebook">
+                        <img src="assets/img/facebook-footer.svg" alt="FB">
+                    </a>
+                    <a href="https://wa.me/5491163765990" target="_blank" aria-label="WhatsApp">
+                        <img src="assets/img/whatsapp-footer.svg" alt="WhatsApp">
+                    </a>
+                    <a href="mailto:info@lagram.com.ar" aria-label="Enviar correo por Gmail">
+                        <img src="assets/img/gmail-footer.svg" alt="Gmail">
+                    </a>
+                    <!-- Nuevo ícono de Spotify (Asegurate de poner el link real de Lagram) -->
+                    <a href="https://open.spotify.com/user/lagramoficial?si=a2e627d1a4cd45a8" target="_blank" aria-label="Spotify">
+                        <img src="assets/img/spotify-footer.svg" alt="Spotify">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer__copyright">
+            <p>&copy; 2026 LAGRAM. Desarrollado por <a href="https://www.linkedin.com/in/valentín-himitian" target="_blank" style="color: inherit; text-decoration: none;">www.linkedin.com/in/valentín-himitian</a></p>
+        </div>
+    </footer>
+
+    <!-- =========================================
+         POP-UP DE NOVEDADES (Multipropósito)
+    ========================================= -->
+    <div class="popup-overlay" id="popup-novedades">
+        <div class="popup-contenedor">
+            
+            <!-- Botón de cerrar -->
+            <button class="popup-cerrar" id="btn-cerrar-popup" aria-label="Cerrar ventana">&times;</button>
+
+            <!-- Imagen representativa (se puede cambiar luego por JS) -->
+            <div class="popup-imagen">
+                <!-- Usá una imagen genérica de Lagram por ahora -->
+                <img src="assets/img/popup-banner.png" alt="Novedades LAGRAM" id="popup-img">
+            </div>
+
+            <!-- Textos vacíos listos para ser llenados por JavaScript -->
+            <div class="popup-contenido">
+                <h3 class="popup-titulo" id="popup-titulo">Cargando...</h3>
+                <p class="popup-texto" id="popup-texto">Buscando las últimas novedades...</p>
+                <a href="#" class="btn-primario popup-btn" id="popup-btn">Saber más</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="js/script.js"></script>
+
+</html>
