@@ -75,11 +75,16 @@ document.addEventListener("DOMContentLoaded", () => {
         `)
         .join("");
 
-    // El contenido se dibuja después de cargar la página, así que el navegador
-    // no puede saltar solo al #ancla del link ("Conocer más"). Lo hacemos a mano.
+    // El contenido se dibuja después de cargar el HTML, así que el salto al
+    // #ancla del link ("Conocer más") no queda bien solo. Lo corregimos cuando
+    // la página terminó de cargar, dejando lugar para el header fijo.
     if (location.hash) {
-        const destino = document.getElementById(location.hash.slice(1));
-        if (destino) destino.scrollIntoView();
+        window.addEventListener("load", () => {
+            const destino = document.getElementById(location.hash.slice(1));
+            if (!destino) return;
+            const y = destino.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo(0, y);
+        });
     }
 });
 
@@ -238,4 +243,19 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', cerrar);
     popup.addEventListener('click', (e) => { if (e.target === popup) cerrar(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') cerrar(); });
+});
+
+/* =========================================
+   INSCRIPCIÓN: Mostrar para qué evento es
+   (inscripcion.html?evento=10-12)
+========================================= */
+document.addEventListener("DOMContentLoaded", () => {
+    const texto = document.getElementById("inscripcion-evento");
+    if (!texto) return;
+
+    const slug = new URLSearchParams(location.search).get("evento");
+    const evento = EVENTOS.find(e => e.slug === slug);
+    if (evento) {
+        texto.textContent = `Te estás anotando al ${evento.titulo}.`;
+    }
 });

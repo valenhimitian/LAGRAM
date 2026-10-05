@@ -773,8 +773,49 @@ h1, h2, h3 {
     display: block;
 }
 
-/* Que el header fijo no tape el campamento al llegar con un link #ancla */
-.proyecto-row,
+/* Textos */
+.proyecto-row__texto {
+    flex: 1; /* Le decimos que ocupe la otra mitad (50%) */
+}
+
+.proyecto-row__texto h2 {
+    font-family: var(--fuente-titulos);
+    font-size: 2.5rem;
+    color: var(--color-primario); /* Naranja institucional */
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.proyecto-row__texto p {
+    font-family: var(--fuente-parrafos);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #555; /* Un gris oscuro para buena lectura */
+}
+
+/* --- ZONA SECUNDARIA --- */
+.proyectos-secundarios {
+    padding: 5rem 2rem;
+    background-color: #f2f9f9; /* El fondo sutil (tint) que usamos en la Home */
+    text-align: center;
+}
+
+.proyectos-secundarios__titulo {
+    font-family: var(--fuente-titulos);
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+/* --- CUADRÍCULA DE TARJETAS SECUNDARIAS --- */
+.grid-proyectos {
+    display: grid;
+    /* Esto crea columnas automáticas que no bajan de 280px de ancho */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem; /* Margen de seguridad lateral */
+}
+
 .tarjeta-iniciativa {
     background-color: #ffffff;
     border-radius: 12px;
@@ -969,6 +1010,7 @@ h1, h2, h3 {
 .popup-btn:hover {
     background-color: #e3821d;
 }
+
 /* =========================================
    BOTONES GENERALES
    (Las clases .btn ya se usaban en el HTML pero no tenían estilos)
@@ -1020,4 +1062,25 @@ h1, h2, h3 {
     flex-direction: column;
     align-items: flex-start;
     margin-top: 0;
+}
+
+/* =========================================
+   PÁGINA DE INSCRIPCIÓN (provisoria)
+========================================= */
+.inscripcion-pronto {
+    max-width: 640px;
+    margin: 0 auto 6rem;
+    padding: 0 1.5rem;
+    text-align: center;
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.inscripcion-pronto__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
 }
