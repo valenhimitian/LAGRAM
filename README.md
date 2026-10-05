@@ -23,9 +23,9 @@ Para garantizar rendimiento óptimo, mantenibilidad y escalabilidad, se seleccio
 | :--- | :--- | :--- |
 | **Frontend (Base)** | **HTML5** | Semántica web, accesibilidad (a11y) y optimización SEO. |
 | **Frontend (Estilos)** | **CSS3 Moderno** | Arquitectura *Mobile-First*, Flexbox, CSS Grid, CSS Variables y Glassmorphism. |
-| **Frontend (Lógica)** | **Vanilla JavaScript** | Manipulación del DOM, consumo de API REST, Intersection Observer (ScrollSpy) y componentes dinámicos (sin dependencias de librerías como jQuery). |
-| **Backend (Lógica y API)** | **Java + Spring Boot** | Creación de una API RESTful robusta, gestión de la lógica de negocio y endpoints de inscripción. |
-| **Base de Datos** | **MySQL / PostgreSQL** | Almacenamiento estructurado y relacional para usuarios, eventos, proyectos e inscripciones. |
+| **Frontend (Lógica)** | **Vanilla JavaScript** | Manipulación del DOM, renderizado de eventos desde una fuente única de datos y consumo de la API de Supabase (sin librerías como jQuery). |
+| **Backend y Base de Datos** | **Supabase (PostgreSQL)** | Base de datos relacional para eventos e inscripciones, API REST autogenerada y seguridad por filas (RLS) para proteger los datos de menores. |
+| **Hosting** | **Netlify / Vercel** | Publicación gratuita del sitio estático. |
 | **Control de Versiones** | **Git & GitHub** | Rastreabilidad del código y despliegue continuo del repositorio. |
 
 ---
@@ -60,14 +60,21 @@ Implementación práctica de la primera fase del proyecto basándose estrictamen
 
 ---
 
-## 🔮 Próximos Pasos (Roadmap Backend)
+## 🧭 Decisión de arquitectura
 
-* [ ] Integración de **API RESTful** construida en **Java con Spring Boot**.
-* [ ] Conexión a base de datos relacional (**MySQL/PostgreSQL**) para gestión dinámica de eventos y proyectos.
-* [ ] Desarrollo del sistema propio de inscripciones a campamentos (eliminando la dependencia de plataformas de terceros como Tally).
-* [ ] Integración de **API RESTful** construida en **Java con Spring Boot**.
+En lugar de un backend propio en Java + Spring Boot, la primera versión usa **Supabase**:
+el sitio estático se publica gratis y la base de datos, la API y la seguridad quedan en un
+servicio gestionado. Motivos: costo de hosting para una organización sin fines de lucro,
+manejo responsable de datos sensibles de menores (Ley 25.326) y plazo hasta la apertura
+de inscripciones de verano. Un panel de administración en Spring Boot queda como posible v2.
 
+---
 
+## 🔮 Próximos Pasos
 
-* [ ] Conexión a base de datos relacional (**MySQL/PostgreSQL**) para gestión dinámica de eventos.
-* [ ] Sistema propio de inscripciones a campamentos (reemplazando plataformas de terceros).
+* [x] Unificar los datos de eventos en una sola fuente (`js/datos.js`)
+* [ ] Página de Equipo
+* [ ] Formulario de inscripción propio con validación
+* [ ] Tablas `eventos` e `inscripciones` en Supabase con políticas RLS
+* [ ] Conectar el frontend a Supabase (`js/api.js`) y reemplazar `js/datos.js`
+* [ ] Deploy en Netlify/Vercel con el dominio de LAGRAM
