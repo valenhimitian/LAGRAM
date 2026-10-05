@@ -760,66 +760,27 @@ h1, h2, h3 {
 /* Imágenes */
 .proyecto-row__imagen {
     flex: 1; /* Le decimos que ocupe exactamente la mitad (50%) del espacio */
+    aspect-ratio: 4 / 3; /* Todas las fotos con la misma proporción, aunque los archivos sean distintos */
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.proyecto-row__imagen img {
+.proyecto-row__foto {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-/* Textos */
-.proyecto-row__texto {
-    flex: 1; /* Le decimos que ocupe la otra mitad (50%) */
-}
-
-.proyecto-row__texto h2 {
-    font-family: var(--fuente-titulos);
-    font-size: 2.5rem;
-    color: var(--color-primario); /* Naranja institucional */
-    margin-bottom: 1rem;
-    line-height: 1.2;
-}
-
-.proyecto-row__texto p {
-    font-family: var(--fuente-parrafos);
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    color: #555; /* Un gris oscuro para buena lectura */
-}
-
-/* --- ZONA SECUNDARIA --- */
-.proyectos-secundarios {
-    padding: 5rem 2rem;
-    background-color: #f2f9f9; /* El fondo sutil (tint) que usamos en la Home */
-    text-align: center;
-}
-
-.proyectos-secundarios__titulo {
-    font-family: var(--fuente-titulos);
-    font-size: 2rem;
-    margin-bottom: 3rem;
-}
-/* --- CUADRÍCULA DE TARJETAS SECUNDARIAS --- */
-.grid-proyectos {
-    display: grid;
-    /* Esto crea columnas automáticas que no bajan de 280px de ancho */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 2rem; /* Margen de seguridad lateral */
-}
-
+/* Que el header fijo no tape el campamento al llegar con un link #ancla */
+.proyecto-row,
 .tarjeta-iniciativa {
     background-color: #ffffff;
-    padding: 2.5rem 1.5rem;
     border-radius: 12px;
+    overflow: hidden; /* Para que la foto respete las esquinas redondeadas */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -828,16 +789,22 @@ h1, h2, h3 {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.tarjeta-iniciativa__icono {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
+.tarjeta-iniciativa__imagen {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+}
+
+.tarjeta-iniciativa__cuerpo {
+    padding: 1.5rem;
 }
 
 .tarjeta-iniciativa__titulo {
     font-family: var(--fuente-titulos);
     color: var(--color-primario);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
 }
 
 .tarjeta-iniciativa__texto {
@@ -845,6 +812,21 @@ h1, h2, h3 {
     color: #555;
     font-size: 1rem;
     line-height: 1.5;
+}
+
+/* Placeholder cuando un evento todavía no tiene foto: fondo de marca + isologo */
+.imagen-pendiente {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-secundario), #1f7d83);
+}
+
+.imagen-pendiente img {
+    width: 30%;
+    max-width: 90px;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
 }
 
 /* =========================================
@@ -986,4 +968,56 @@ h1, h2, h3 {
 
 .popup-btn:hover {
     background-color: #e3821d;
+}
+/* =========================================
+   BOTONES GENERALES
+   (Las clases .btn ya se usaban en el HTML pero no tenían estilos)
+========================================= */
+.btn {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-family: var(--fuente-parrafos);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn--primario {
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+}
+
+.btn--primario:hover {
+    background-color: #e3821d;
+}
+
+.btn--secundario {
+    background-color: transparent;
+    border-color: var(--color-secundario);
+    color: var(--color-secundario);
+}
+
+.btn--secundario:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-fondo);
+}
+
+.proyectos__ver-todos {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* Íconos de redes apilados en la columna del footer */
+.footer__social--vertical {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 0;
 }

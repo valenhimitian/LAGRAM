@@ -25,7 +25,7 @@
         </a>
 
         <!-- Botón de Hamburguesa (Solo visible en mobile) -->
-        <button class="header__hamburguesa" id="menu-btn" aria-label="Abrir menú">
+        <button class="header__hamburguesa" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-nav">
             <span class="header__hamburguesa-linea"></span>
             <span class="header__hamburguesa-linea"></span>
             <span class="header__hamburguesa-linea"></span>
@@ -51,74 +51,14 @@
             <p>Un tiempo para desconectarte de todo y conectarte con lo que importa.</p>
         </section>
 
-        <!-- ZONA VIP: Los 3 Campamentos Principales (Diseño Zig-Zag) -->
-        <section class="proyectos-vip">
-            
-            <!-- Campamento 10 a 12 (Imagen a la Izquierda) -->
-            <article class="proyecto-row" id="camp-10-12">
-                <div class="proyecto-row__imagen">
-                    <img src="assets/img/10-12.jpg" alt="Campamento 10 a 12">
-                </div>
-                <div class="proyecto-row__texto">
-                    <h2>Campamento 10 a 12</h2>
-                    <p>Un espacio diseñado a medida para sus primeras aventuras, enfocándonos en la integración, el trabajo en equipo y el inicio de su relación con Jesús.</p>
-                    <a href="#inscripcion" class="btn btn--primario">Inscribirme</a>
-                </div>
-            </article>
+        <!-- ZONA PRINCIPAL: Campamentos en zigzag (se dibujan desde js/datos.js) -->
+        <section class="proyectos-vip" id="lista-campamentos" aria-label="Campamentos"></section>
 
-            <!-- Campamento 13 a 15 (Imagen a la Derecha - Gracias a la clase --invertido) -->
-            <article class="proyecto-row proyecto-row--invertido" id="camp-13-15">
-                <div class="proyecto-row__imagen">
-                    <img src="assets/img/13-15.jpg" alt="Campamento 13 a 15">
-                </div>
-                <div class="proyecto-row__texto">
-                    <h2>Campamento 13 a 15</h2>
-                    <p>Dinámicas más profundas, tiempo de reflexión y actividades de alto impacto adaptadas a esta etapa clave de sus vidas.</p>
-                    <a href="#inscripcion" class="btn btn--primario">Inscribirme</a>
-                </div>
-            </article>
-
-            <!-- Campamento 16 a 18 (Imagen a la Izquierda) -->
-            <article class="proyecto-row" id="camp-16-18">
-                <div class="proyecto-row__imagen">
-                    <img src="assets/img/16-18.jpg" alt="Campamento 16 a 18">
-                </div>
-                <div class="proyecto-row__texto">
-                    <h2>Campamento 16 a 18</h2>
-                    <p>Este campamento desafía a los adolescentes a buscar su propia manera de experimentar la fe.</p>
-                    <a href="#inscripcion" class="btn btn--primario">Inscribirme</a>
-                </div>
-            </article>
-
+        <!-- ZONA SECUNDARIA: Otras iniciativas (se dibujan desde js/datos.js) -->
+        <section class="proyectos-secundarios">
+            <h2 class="proyectos-secundarios__titulo">Más iniciativas de LAGRAM</h2>
+            <div class="grid-proyectos" id="grid-otros-proyectos"></div>
         </section>
-
-        <!-- ZONA SECUNDARIA: Más iniciativas (Cuadrícula) -->
-            <section class="proyectos-secundarios">
-                <h3 class="proyectos-secundarios__titulo">Más iniciativas de LAGRAM</h3>
-                
-                <div class="grid-proyectos" id="grid-otros-proyectos">
-                    <!-- Tarjeta ExpoCarreras -->
-                    <div class="tarjeta-iniciativa">
-                        <div class="tarjeta-iniciativa__icono">🎓</div>
-                        <h4 class="tarjeta-iniciativa__titulo">ExpoCarreras</h4>
-                        <p class="tarjeta-iniciativa__texto">Orientación vocacional y charlas con profesionales para ayudarte a elegir tu futuro.</p>
-                    </div>
-
-                    <!-- Tarjeta Picnic LAGRAM -->
-                    <div class="tarjeta-iniciativa">
-                        <div class="tarjeta-iniciativa__icono">🧺</div>
-                        <h4 class="tarjeta-iniciativa__titulo">Picnic LAGRAM</h4>
-                        <p class="tarjeta-iniciativa__texto">Un día de reencuentro, juegos y tiempo al aire libre para disfrutar con toda la familia.</p>
-                    </div>
-
-                    <!-- Tarjeta Otras Salidas -->
-                    <div class="tarjeta-iniciativa">
-                        <div class="tarjeta-iniciativa__icono">🏕️</div>
-                        <h4 class="tarjeta-iniciativa__titulo">Salidas y Retiros</h4>
-                        <p class="tarjeta-iniciativa__texto">Eventos especiales durante el año para profundizar amistades y crecer juntos.</p>
-                    </div>
-                </div>
-            </section>
 
     </main>
 
@@ -185,6 +125,7 @@
         </div>
     </footer>
 
+    <script src="js/datos.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

@@ -28,7 +28,7 @@
         </a>
 
         <!-- Botón de Hamburguesa (Solo visible en mobile) -->
-        <button class="header__hamburguesa" id="menu-btn" aria-label="Abrir menú">
+        <button class="header__hamburguesa" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-nav">
             <span class="header__hamburguesa-linea"></span>
             <span class="header__hamburguesa-linea"></span>
             <span class="header__hamburguesa-linea"></span>
@@ -118,6 +118,10 @@
             <h2 class="proyectos__titulo-principal">Nuestros Proyectos</h2>
 
             <div class="proyectos__grid" id="grid-proyectos"></div>
+
+            <div class="proyectos__ver-todos">
+                <a href="proyectos.html" class="btn btn--secundario">Ver todos los proyectos</a>
+            </div>
 
         </div>
     </section>
@@ -257,6 +261,7 @@
         </div>
     </div>
 
+    <script src="js/datos.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
