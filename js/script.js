@@ -101,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <article class="tarjeta-iniciativa" id="${escaparHTML(evento.slug)}">
                 ${imagenEvento(evento, "tarjeta-iniciativa__imagen")}
                 <div class="tarjeta-iniciativa__cuerpo">
+                    ${evento.edades ? `<span class="tarjeta-iniciativa__edades">${escaparHTML(evento.edades)}</span>` : ""}
                     <h4 class="tarjeta-iniciativa__titulo">${escaparHTML(evento.titulo)}</h4>
                     <p class="tarjeta-iniciativa__texto">${escaparHTML(evento.descripcion)}</p>
                 </div>
@@ -117,10 +118,13 @@ document.addEventListener("DOMContentLoaded", () => {
    así que casi nunca marcaba nada. Ahora se marca según la página.
 ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
-    const paginaActual = location.pathname.split("/").pop() || "index.html";
+    // Netlify muestra las URLs sin ".html" (/proyectos en vez de /proyectos.html),
+    // así que comparamos los nombres sin la extensión. "" o "index" = Inicio.
+    const normalizar = (ruta) => ruta.split("/").pop().replace(/\.html$/, "") || "index";
+    const paginaActual = normalizar(location.pathname);
 
     document.querySelectorAll(".header__link").forEach(enlace => {
-        if (enlace.getAttribute("href") === paginaActual) {
+        if (normalizar(enlace.getAttribute("href")) === paginaActual) {
             enlace.classList.add("activo");
             enlace.setAttribute("aria-current", "page");
         }
@@ -183,6 +187,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // El código muestra la primera que coincida con la fecha de hoy.
     // Si una campaña no tiene foto propia, usa popup-banner.png.
     const campañasLAGRAM = [
+        {
+            id: 'previa-verano-27',
+            inicio: '2026-10-01',
+            fin: '2026-11-14', // El 15/11 la reemplaza la de inscripciones abiertas
+            imagen: 'assets/img/16-18.jpg',
+            titulo: '¡Se vienen los campas de verano!',
+            texto: 'Muy pronto abrimos las inscripciones para los campamentos de 10 a 12, 13 a 15 y 16 a 18. ¡Estate atento!',
+            botonTexto: 'Conocé los campamentos',
+            botonLink: 'proyectos.html'
+        },
         {
             id: 'verano-27', // Si cambiás este ID, el cartel le vuelve a aparecer a quienes ya lo cerraron
             inicio: '2026-11-15',

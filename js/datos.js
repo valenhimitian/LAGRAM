@@ -13,6 +13,7 @@
    - destacado:   true = aparece en las tarjetas del Inicio
    - inscripcion: true = muestra el botón "Inscribirme"
    - imagen:      ruta de la foto, o null si todavía no hay foto
+   - edades:      (opcional) franja de edad que se muestra como etiqueta
 ========================================= */
 const EVENTOS = [
     // ---------- CAMPAMENTOS ----------
@@ -48,7 +49,7 @@ const EVENTOS = [
         tipo: "campamento",
         titulo: "Campamento 22 a 26",
         imagen: "assets/img/22-26.jpg",
-        descripcion: "Un campamento para equipar a los futuros líderes con herramientas prácticas, empatía y visión integral.",
+        descripcion: "Este campamento invita a hacer una pausa en la carrera de la vida para revisar el camino y ganar impulso para seguir avanzando.",
         destacado: false,
         inscripcion: true
     },
@@ -77,7 +78,7 @@ const EVENTOS = [
         tipo: "iniciativa",
         titulo: "LAGRAMPIADA",
         imagen: null,
-        descripcion: "Fomentamos el compañerismo, el trabajo en equipo y la vida sana a través del deporte.",
+        descripcion: "Una noche llena de juegos, deportes, comida rica y amigos.",
         destacado: false,
         inscripcion: false
     },
@@ -86,16 +87,27 @@ const EVENTOS = [
         tipo: "iniciativa",
         titulo: "Arte",
         imagen: null,
-        descripcion: "Espacios de expresión creativa donde los adolescentes descubren y potencian sus talentos.",
+        descripcion: "Un día entero para explorar juntos diferentes formas de hacer arte y experimentar nuevas maneras de conectar con Dios.",
         destacado: false,
         inscripcion: false
     },
     {
         slug: "picnic",
         tipo: "iniciativa",
-        titulo: "Picnic LAGRAM",
+        titulo: "Picnic",
         imagen: null,
-        descripcion: "Un día de reencuentro, juegos y tiempo al aire libre para disfrutar con toda la familia.",
+        edades: "10 a 15 años",
+        descripcion: "Un día al aire libre, una escapada con amigos, rica comida, matecitos, charlitas, deportes y juegos. En fin, un planazo. Una hermosa propuesta para cerrar el verano con todo.",
+        destacado: false,
+        inscripcion: false
+    },
+    {
+        slug: "feriadito",
+        tipo: "iniciativa",
+        titulo: "Feriadito",
+        imagen: null,
+        edades: "19 a 26 años",
+        descripcion: "Es una propuesta nueva, que te invita a desconectar de la rutina para pasar un día rodeado de gente del bien, comiendo rico, en modo chill, con cafecito y/o matecito de por medio y charlando de la vida, como lo harías en cualquier FERIADITO.",
         destacado: false,
         inscripcion: false
     }

@@ -1712,3 +1712,15 @@ a.miembro:hover {
         height: 80px;
     }
 }
+
+/* Etiqueta de edades en las tarjetas de iniciativas */
+.tarjeta-iniciativa__edades {
+    display: inline-block;
+    background: #f2f9f9;
+    color: var(--color-secundario);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.6rem;
+}
