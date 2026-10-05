@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pre-inscripción a FILO, el retiro del Equipo de Trabajo de LAGRAM.">
+    <meta property="og:title" content="FILO | LAGRAM">
+    <meta property="og:description" content="Pre-inscripción a FILO, el retiro del Equipo de Trabajo de LAGRAM.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+    <meta name="theme-color" content="#2DA6AE">
+    <title>FILO | LAGRAM</title>
+    <link rel="icon" type="image/png" href="assets/img/iso.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    
+    <link rel="stylesheet" href="assets/css/estilos.css">
+</head>
+<body>
+
+    
+   <header class="header">
+    <div class="header__contenedor">
+        <!-- Logo -->
+        <a href="index.html" class="header__logo-link">
+            <img src="assets/img/iso.png" alt="Logo de LAGRAM" class="header__logo">
+        </a>
+
+        <!-- Botón de Hamburguesa (Solo visible en mobile) -->
+        <button class="header__hamburguesa" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-nav">
+            <span class="header__hamburguesa-linea"></span>
+            <span class="header__hamburguesa-linea"></span>
+            <span class="header__hamburguesa-linea"></span>
+        </button>
+
+        <!-- Navegación -->
+        <nav class="header__nav" id="menu-nav">
+            <ul class="header__menu">
+                <li><a href="index.html" class="header__link">Inicio</a></li>
+                <li><a href="proyectos.html" class="header__link">Proyectos</a></li>
+                <li><a href="equipo.html" class="header__link">Equipo</a></li>
+                <li><a href="#footer" class="header__link">Redes</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main class="pagina-inscripcion">
+        <section class="proyectos-header">
+            <h1 id="filo-titulo">FILO</h1>
+            <p>El retiro del Equipo de Trabajo de LAGRAM.</p>
+        </section>
+
+        <div class="inscripcion">
+
+            <!-- INFO DE FILO (fechas, horarios y costo se completan desde js/datos.js) -->
+            <aside class="inscripcion-info" aria-label="Información de FILO">
+                <p class="inscripcion-info__intro">Estamos felices de que se venga otro FILO y que puedas sumarte. Estamos convencidos de que los días de FILO nos hacen crecer personalmente y como organización, nos permiten formar nuevas relaciones y seguir con los ojos puestos en nuestra meta de que cada vez más <strong>adolescentes crezcan de manera integral en una relación cercana y continua con Jesús.</strong></p>
+
+                <dl class="inscripcion-info__lista">
+                    <div>
+                        <dt>¿Puedo participar?</dt>
+                        <dd>
+                            <p>Sólo si fuiste parte de un Equipo de Trabajo en alguno de nuestros programas <strong>por lo menos una vez.</strong></p>
+                            <p>En este FILO nos animamos a crecer y aumentar los lugares disponibles pero, como siempre, son limitados.</p>
+                            <p>Por eso, queremos avisarte que si al terminar los días de inscripción la cantidad de personas supera ese número, vamos a realizar un sorteo para definir a quienes se les asigna el lugar primero. Estate atento al whatsapp que nos vamos a contactar por ese medio para asignar las vacantes.</p>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>¿Dónde y cuándo es?</dt>
+                        <dd>
+                            <p>El FILO va a ser en el parque "El Sembrador" en la localidad de Máximo Paz, Buenos Aires, <span id="filo-cuando"></span></p>
+                            <p>Los micros salen de Irigoyen y Tinogasta, Villa Real, CABA (Escuela ECEA) <span id="filo-hora-micro"></span></p>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>¿Cuánto sale?</dt>
+                        <dd><p>La totalidad del campa sale <span id="filo-costo"></span>. Dependiendo el método de pago, puede existir un recargo.</p></dd>
+                    </div>
+                    <div>
+                        <dt>¿Cómo son los horarios?</dt>
+                        <dd>
+                            <p id="filo-horarios"></p>
+                            <p>Obviamente, queremos que vengas a TODO el campa. Te animamos a que te organices para no comprometerte con otra actividad ese finde para poder estar 100% disponible y enfocado en el FILO que es sólo una vez al año.</p>
+                            <p>Si por alguna razón no podés estar todos los días completos, escribinos al <a class="filo-contacto" target="_blank" rel="noopener"></a> <strong>antes de inscribirte.</strong></p>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>¿Cómo me anoto?</dt>
+                        <dd>
+                            <p>Desde el formulario que está al final de esta página vas a generar tu pre-inscripción. En unos días nos vamos a contactar con vos para decirte si tenés una vacante asignada o si estás en lista de espera.</p>
+                            <p>Una vez que confirmemos tu vacante (sea por sorteo o no) te vamos a enviar la información para que puedas realizar el pago del campamento e informarlo.</p>
+                            <p>A partir de ese momento, vas a contar con <span id="filo-dias-pago"></span> días para pagar y de esa manera ya asegurar tu lugar. Luego de esos días, lamentablemente tendremos que asignar el lugar a otra persona y ubicarte en lista de espera hasta que se desocupe un nuevo lugar.</p>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>¿Qué hago si tengo más preguntas?</dt>
+                        <dd><p>Escribinos al <a class="filo-contacto" target="_blank" rel="noopener"></a></p></dd>
+                    </div>
+                </dl>
+            </aside>
+
+            <div class="inscripcion-aviso inscripcion-aviso--destacado" id="aviso-estado" hidden>
+                <p>Las inscripciones para FILO están cerradas. ¡Te esperamos en el próximo!</p>
+            </div>
+
+            <!-- =========================================
+                 FORMULARIO (un solo paso)
+            ========================================= -->
+            <form class="formulario" id="form-filo" novalidate>
+
+                <div class="formulario__progreso">
+                    <p class="formulario__paso-texto" aria-live="polite"></p>
+                    <div class="formulario__barra"><div class="formulario__barra-relleno"></div></div>
+                </div>
+
+                <fieldset class="formulario__paso" data-paso="1">
+                    <legend class="formulario__titulo">Pre-inscripción</legend>
+
+                    <div class="campo-fila">
+                        <div class="campo" data-campo="nombre">
+                            <label class="campo__label" for="nombre">Nombre <span class="campo__req">*</span></label>
+                            <input type="text" id="nombre" name="nombre" autocomplete="given-name" required maxlength="60">
+                            <p class="campo__error" aria-live="polite"></p>
+                        </div>
+                        <div class="campo" data-campo="apellido">
+                            <label class="campo__label" for="apellido">Apellido <span class="campo__req">*</span></label>
+                            <input type="text" id="apellido" name="apellido" autocomplete="family-name" required maxlength="60">
+                            <p class="campo__error" aria-live="polite"></p>
+                        </div>
+                    </div>
+
+                    <div class="campo-fila">
+                        <div class="campo" data-campo="celular">
+                            <label class="campo__label" for="celular">Tu WhatsApp <span class="campo__req">*</span></label>
+                            <input type="tel" id="celular" name="celular" autocomplete="tel" required placeholder="Ej: 11 6376 5990">
+                            <p class="campo__error" aria-live="polite"></p>
+                        </div>
+                        <div class="campo" data-campo="email">
+                            <label class="campo__label" for="email">Tu email</label>
+                            <input type="email" id="email" name="email" autocomplete="email" maxlength="120">
+                            <p class="campo__error" aria-live="polite"></p>
+                        </div>
+                    </div>
+
+                    <div class="campo" data-campo="participacion">
+                        <p class="campo__label" id="label-participacion">Participé en LAGRAM en... <span class="campo__req">*</span></p>
+                        <div class="opciones opciones--grilla" role="group" aria-labelledby="label-participacion">
+                            <label class="opcion"><input type="checkbox" name="participacion" value="campamento_10_12"><span>Campamento 10 a 12</span></label>
+                            <label class="opcion"><input type="checkbox" name="participacion" value="campamento_13_15"><span>Campamento 13 a 15</span></label>
+                            <label class="opcion"><input type="checkbox" name="participacion" value="campamento_16_18"><span>Campamento 16 a 18</span></label>
+                            <label class="opcion"><input type="checkbox" name="participacion" value="campamento_22_26"><span>Campamento 22 a 26 (o 19 a 26)</span></label>
+                            <label class="opcion"><input type="checkbox" name="participacion" value="lagrampiada"><span>Lagrampiada</span></label>
+                            <label class="opcion"><input type="checkbox" name="participacion" value="gamers"><span>Gamers</span></label>
+                            <label class="opcion"><input type="checkbox" name="participacion" value="arte"><span>Arte</span></label>
+                            <label class="opcion"><input type="checkbox" name="participacion" value="picnic"><span>Picnic</span></label>
+                            <label class="opcion"><input type="checkbox" name="participacion" value="otros"><span>Otros</span></label>
+                            <label class="opcion"><input type="checkbox" name="participacion" value="ninguna" data-exclusivo><span>Ninguna actividad</span></label>
+                        </div>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo" data-campo="iglesia">
+                        <label class="campo__label" for="iglesia">¿De qué iglesia formás parte? <span class="campo__req">*</span></label>
+                        <input type="text" id="iglesia" name="iglesia" required maxlength="100">
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo" data-campo="traslado">
+                        <p class="campo__label" id="label-traslado">Voy al FILO en... <span class="campo__req">*</span></p>
+                        <p class="campo__ayuda" id="ayuda-traslado"></p>
+                        <div class="opciones" role="radiogroup" aria-labelledby="label-traslado">
+                            <label class="opcion"><input type="radio" name="traslado" value="micro_ecea" required><span>Micro desde ECEA</span></label>
+                            <label class="opcion"><input type="radio" name="traslado" value="auto_ecea"><span>Auto desde ECEA (y puedo llevar gente)</span></label>
+                            <label class="opcion"><input type="radio" name="traslado" value="auto_parque"><span>Auto directo al parque</span></label>
+                        </div>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo" data-campo="dieta">
+                        <p class="campo__label" id="label-dieta">¿Tenés alguna dieta especial? <span class="campo__req">*</span></p>
+                        <p class="campo__ayuda">Contanos si tenés alguna alergia o restricción médica a ciertos alimentos.</p>
+                        <div class="opciones" role="radiogroup" aria-labelledby="label-dieta">
+                            <label class="opcion"><input type="radio" name="dieta" value="ninguna" required><span>No</span></label>
+                            <label class="opcion"><input type="radio" name="dieta" value="vegetariana"><span>Dieta vegetariana</span></label>
+                            <label class="opcion"><input type="radio" name="dieta" value="vegana"><span>Dieta vegana</span></label>
+                            <label class="opcion"><input type="radio" name="dieta" value="celiaca"><span>Dieta Celíaca (sin TACC)</span></label>
+                        </div>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo" data-campo="comentarios">
+                        <label class="campo__label" for="comentarios">Y además quería decir que...</label>
+                        <p class="campo__ayuda">Si hay algo en particular que creas que necesitemos saber, este es el espacio (por ejemplo, si querés venir con tus hijos, decinos nombre y edad).</p>
+                        <textarea id="comentarios" name="comentarios" rows="3" maxlength="1000"></textarea>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo" data-campo="consentimiento">
+                        <label class="opcion opcion--check">
+                            <input type="checkbox" name="consentimiento" value="si" required>
+                            <span>Estoy de acuerdo en que LAGRAM use estos datos únicamente para gestionar mi inscripción a FILO.</span>
+                        </label>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+                </fieldset>
+
+                <div class="formulario__acciones">
+                    <button type="button" class="btn btn--secundario" data-accion="anterior" hidden>Anterior</button>
+                    <button type="button" class="btn btn--primario" data-accion="siguiente" hidden>Continuar</button>
+                    <button type="submit" class="btn btn--primario" data-accion="enviar">Enviar pre-inscripción</button>
+                </div>
+                <p class="formulario__error-general" role="alert"></p>
+            </form>
+
+            <section class="formulario-exito" id="formulario-exito" hidden tabindex="-1">
+                <h2>¡Listo, ya te pre-inscribiste!</h2>
+                <p>En unos días nos vamos a contactar con vos por WhatsApp para decirte si tenés una vacante asignada o si estás en lista de espera.</p>
+                <a href="index.html" class="btn btn--secundario">Volver al inicio</a>
+            </section>
+        </div>
+    </main>
+
+
+    <footer class="footer" id="footer">
+        <div class="footer__contenedor">
+
+            <div class="footer__columna">
+                <img src="assets/img/iso.png" alt="Logo LAGRAM" class="footer__logo">
+                <p class="footer__descripcion">Acompañando a los adolescentes a crecer de manera integral, en una
+                    relación cercana y continua con Jesús.</p>
+            </div>
+
+            <div class="footer__columna">
+                <h4 class="footer__titulo">Navegación</h4>
+                <ul class="footer__links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="equipo.html">Equipo</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: El Mapa -->
+            <div class="footer__columna">
+                <h4 class="footer__titulo">¿Dónde son los campamentos?</h4>
+                <div class="footer__mapa">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3270.274318870614!2d-58.596475151065064!3d-34.949732598355894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcd87e0a44ce57%3A0x9e309571b2313253!2sParque%20Cristiano%20El%20Sembrador!5e0!3m2!1ses-419!2sar!4v1786031067845!5m2!1ses-419!2sar"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Columna 4: Redes y Contacto -->
+            <div class="footer__columna">
+                <h4 class="footer__titulo">Nuestras Redes</h4>
+
+                <div class="footer__social footer__social--vertical">
+                    <a href="https://www.instagram.com/lagramoficial" target="_blank" rel="noopener">
+                        <img src="assets/img/instagram.svg" alt="" aria-hidden="true">
+                        <span>@lagramoficial</span>
+                    </a>
+                    <a href="https://www.facebook.com/lagramoficial" target="_blank" rel="noopener">
+                        <img src="assets/img/facebook-footer.svg" alt="" aria-hidden="true">
+                        <span>/lagramoficial</span>
+                    </a>
+                    <a href="https://wa.me/5491163765990" target="_blank" rel="noopener">
+                        <img src="assets/img/whatsapp-footer.svg" alt="" aria-hidden="true">
+                        <span>+54 9 11 6376-5990</span>
+                    </a>
+                    <a href="mailto:info@lagram.com.ar">
+                        <img src="assets/img/gmail-footer.svg" alt="" aria-hidden="true">
+                        <span>info@lagram.com.ar</span>
+                    </a>
+                    <a href="https://open.spotify.com/user/lagramoficial?si=a2e627d1a4cd45a8" target="_blank" rel="noopener">
+                        <img src="assets/img/spotify-footer.svg" alt="" aria-hidden="true">
+                        <span>LAGRAM en Spotify</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer__copyright">
+            <p>&copy; 2026 LAGRAM. Desarrollado por <a href="https://www.linkedin.com/in/valent%C3%ADn-himitian" target="_blank" rel="noopener">Valentín Himitian</a></p>
+        </div>
+    </footer>
+
+    <script src="js/datos.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/formulario.js"></script>
+    <script src="js/inscripcion-filo.js"></script>
+</body>
+</html>

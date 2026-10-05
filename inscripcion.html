@@ -76,8 +76,8 @@
 
                 <!-- Barra de progreso -->
                 <div class="formulario__progreso">
-                    <p class="formulario__paso-texto" id="paso-texto" aria-live="polite">Paso 1 de 4</p>
-                    <div class="formulario__barra"><div class="formulario__barra-relleno" id="paso-barra"></div></div>
+                    <p class="formulario__paso-texto" aria-live="polite">Paso 1 de 4</p>
+                    <div class="formulario__barra"><div class="formulario__barra-relleno"></div></div>
                 </div>
 
                 <!-- PASO 1: Campamento -->
@@ -294,17 +294,17 @@
 
                 <!-- Navegación entre pasos -->
                 <div class="formulario__acciones">
-                    <button type="button" class="btn btn--secundario" id="btn-anterior" hidden>Anterior</button>
-                    <button type="button" class="btn btn--primario" id="btn-siguiente">Continuar</button>
-                    <button type="submit" class="btn btn--primario" id="btn-enviar" hidden>Enviar inscripción</button>
+                    <button type="button" class="btn btn--secundario" data-accion="anterior" hidden>Anterior</button>
+                    <button type="button" class="btn btn--primario" data-accion="siguiente">Continuar</button>
+                    <button type="submit" class="btn btn--primario" data-accion="enviar" hidden>Enviar inscripción</button>
                 </div>
-                <p class="formulario__error-general" id="error-general" role="alert"></p>
+                <p class="formulario__error-general" role="alert"></p>
             </form>
 
             <!-- Pantalla de éxito -->
             <section class="formulario-exito" id="formulario-exito" hidden tabindex="-1">
                 <h2>¡Listo, ya estás anotado/a!</h2>
-                <p id="exito-texto">Recibimos tu inscripción. Después del cierre hacemos el sorteo de vacantes y te avisamos por WhatsApp al celular de tu adulto responsable.</p>
+                <p>Recibimos tu inscripción. Después del cierre hacemos el sorteo de vacantes y te avisamos por WhatsApp al celular de tu adulto responsable.</p>
                 <a href="index.html" class="btn btn--secundario">Volver al inicio</a>
             </section>
         </div>
@@ -379,6 +379,7 @@
     <script src="js/datos.js"></script>
     <script src="js/api.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/inscripcion.js"></script>
+    <script src="js/formulario.js"></script>
+    <script src="js/inscripcion-campamentos.js"></script>
 </body>
 </html>

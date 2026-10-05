@@ -25,6 +25,7 @@ function imagenEvento(evento, clase) {
 }
 
 function linkInscripcion(evento) {
+    if (evento.formulario) return evento.formulario;
     return `inscripcion.html?evento=${encodeURIComponent(evento.slug)}`;
 }
 

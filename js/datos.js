@@ -12,6 +12,7 @@
    - tipo:        "campamento" (zona principal en zigzag) o "iniciativa" (grilla)
    - destacado:   true = aparece en las tarjetas del Inicio
    - inscripcion: true = muestra el botón "Inscribirme"
+   - formulario:  (opcional) página de inscripción propia; si no está, usa inscripcion.html
    - imagen:      ruta de la foto, o null si todavía no hay foto
    - edades:      (opcional) franja de edad que se muestra como etiqueta
 ========================================= */
@@ -60,7 +61,8 @@ const EVENTOS = [
         imagen: "assets/img/FILO.jpg",
         descripcion: "El retiro del equipo de trabajo de LAGRAM: tiempo para afilarnos, capacitarnos y buscar a Dios juntos.",
         destacado: false,
-        inscripcion: false
+        inscripcion: true,
+        formulario: "inscripcion-filo.html"   // FILO tiene su propio formulario
     },
 
     // ---------- OTRAS INICIATIVAS ----------
@@ -140,4 +142,23 @@ const TEMPORADA = {
         { slug: "13-15", edadMin: 13, edadMax: 15, fechas: null, costo: null },
         { slug: "16-18", edadMin: 16, edadMax: 18, fechas: null, costo: null }
     ]
+};
+
+/* =========================================
+   FILO (retiro del Equipo de Trabajo)
+   -----------------------------------------
+   Lo que está en null se muestra como "a confirmar".
+   Fechas en formato "AAAA-MM-DD", horas como texto ("19hs").
+========================================= */
+const FILO = {
+    nombre: "FILO 2027",
+    estado: "abierta",            // "abierta" | "cerrada"
+    desde: null,                  // día de salida, ej: "2027-04-29"
+    hasta: null,                  // día de regreso
+    horaSalidaECEA: null,         // ej: "19hs"
+    horaLlegadaParque: null,      // ej: "21hs"
+    horaRegreso: null,            // ej: "17hs"
+    costo: null,                  // ej: 120000
+    diasParaPagar: 5,
+    contacto: "+54 9 11 6376-5990"
 };
