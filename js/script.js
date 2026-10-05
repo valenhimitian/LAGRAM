@@ -205,8 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 'expocarreras-26',
-            inicio: '2026-09-01',
-            fin: '2026-10-30',
+            inicio: '2026-08-01',
+            fin: '2026-08-29', // El evento fue el sábado 29 de agosto
             imagen: 'assets/img/popup-banner.png',
             titulo: 'ExpoCarreras 2026',
             texto: 'Vení a descubrir tu vocación charlando con profesionales de nuestra comunidad.',

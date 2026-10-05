@@ -73,8 +73,9 @@ de inscripciones de verano. Un panel de administración en Spring Boot queda com
 ## 🔮 Próximos Pasos
 
 * [x] Unificar los datos de eventos en una sola fuente (`js/datos.js`)
-* [ ] Página de Equipo
-* [ ] Formulario de inscripción propio con validación
+* [x] Página de Equipo
+* [x] Formulario de inscripción propio con validación (10 a 18; falta el de 22 a 26)
 * [ ] Tablas `eventos` e `inscripciones` en Supabase con políticas RLS
 * [ ] Conectar el frontend a Supabase (`js/api.js`) y reemplazar `js/datos.js`
-* [ ] Deploy en Netlify/Vercel con el dominio de LAGRAM
+* [ ] Deploy en Netlify con el dominio de LAGRAM
+* [ ] Imagen para compartir el link (og:image) cuando esté el dominio definitivo
