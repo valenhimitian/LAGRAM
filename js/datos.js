@@ -100,3 +100,32 @@ const EVENTOS = [
         inscripcion: false
     }
 ];
+
+/* =========================================
+   TEMPORADA DE INSCRIPCIÓN ACTUAL
+   -----------------------------------------
+   Esto se edita cada temporada. Lo que está en null se muestra
+   como "a confirmar" en la página de inscripción.
+
+   estado:
+   - "abierta":     se puede anotar normalmente
+   - "lista-espera": se puede anotar, pero entra a la lista de espera
+   - "cerrada":     el formulario no se muestra
+========================================= */
+const TEMPORADA = {
+    nombre: "Campamentos de Verano 2027",
+    estado: "abierta",
+    lugar: 'Parque "El Sembrador", Máximo Paz, Buenos Aires',
+    salida: "Los micros salen de Irigoyen y Tinogasta, Villa Real, CABA (Escuela ECEA)",
+    inscripcion: { desde: null, hasta: null },  // ej: "2026-12-01"
+    sorteo: null,                               // fecha en que se avisa quién quedó
+    diasParaPagar: 5,
+    contacto: "+54 9 11 6376-5990",
+
+    // Una entrada por campamento. edadMin/edadMax arman la lista de edades del formulario.
+    campamentos: [
+        { slug: "10-12", edadMin: 10, edadMax: 12, fechas: null, costo: null },
+        { slug: "13-15", edadMin: 13, edadMax: 15, fechas: null, costo: null },
+        { slug: "16-18", edadMin: 16, edadMax: 18, fechas: null, costo: null }
+    ]
+};

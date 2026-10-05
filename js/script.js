@@ -244,18 +244,3 @@ document.addEventListener('DOMContentLoaded', () => {
     popup.addEventListener('click', (e) => { if (e.target === popup) cerrar(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') cerrar(); });
 });
-
-/* =========================================
-   INSCRIPCIÓN: Mostrar para qué evento es
-   (inscripcion.html?evento=10-12)
-========================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    const texto = document.getElementById("inscripcion-evento");
-    if (!texto) return;
-
-    const slug = new URLSearchParams(location.search).get("evento");
-    const evento = EVENTOS.find(e => e.slug === slug);
-    if (evento) {
-        texto.textContent = `Te estás anotando al ${evento.titulo}.`;
-    }
-});
