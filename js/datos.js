@@ -15,6 +15,8 @@
                   solo mientras las inscripciones estén abiertas (ver fechas más abajo)
    - formulario:  (opcional) página de inscripción propia; si no está, usa inscripcion.html
    - imagen:      ruta de la foto, o null si todavía no hay foto
+   - imagenFondo: (opcional) otra foto para el encabezado de su página; si no está, usa "imagen"
+   - posicionFondo: (opcional) encuadre vertical de esa foto, ej: "30%" (0% = arriba)
    - edades:      (opcional) franja de edad que se muestra como etiqueta
 ========================================= */
 const EVENTOS = [
@@ -88,7 +90,9 @@ const EVENTOS = [
         slug: "picnic",
         tipo: "iniciativa",
         titulo: "Picnic",
-        imagen: null,
+        imagen: "assets/img/picnic.jpg",
+        imagenFondo: "assets/img/picnic-fondo.jpg",
+        posicionFondo: "45%",
         edades: "10 a 15 años",
         descripcion: "Un día al aire libre, una escapada con amigos, rica comida, matecitos, charlitas, deportes y juegos. En fin, un planazo. Una hermosa propuesta para cerrar el verano con todo.",
         vigente: true,
@@ -100,7 +104,8 @@ const EVENTOS = [
         slug: "feriadito",
         tipo: "iniciativa",
         titulo: "Feriadito",
-        imagen: null,
+        imagen: "assets/img/feriadito.jpg",
+        posicionFondo: "25%",
         edades: "19 a 26 años",
         descripcion: "Es una propuesta nueva, que te invita a desconectar de la rutina para pasar un día rodeado de gente del bien, comiendo rico, en modo chill, con cafecito y/o matecito de por medio y charlando de la vida, como lo harías en cualquier FERIADITO.",
         vigente: true,
@@ -136,7 +141,8 @@ const EVENTOS = [
         tipo: "iniciativa",
         titulo: "Gamers",
         imagen: null,
-        descripcion: null,
+        edades: "11 a 19 años",
+        descripcion: "Un día pensado para que chicos y chicas de entre 11 a 19 años, fanáticos de los videojuegos, se encuentren a jugar en un ambiente distinto.",
         vigente: false,
         ultimaEdicion: null,
         destacado: false,

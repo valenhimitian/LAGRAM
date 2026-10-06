@@ -45,8 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
     $("evento-texto").textContent = detalle
         ? (evento.edades ? `Para ${evento.edades}.` : "")
         : (evento.descripcion || "");
-    if (evento.imagen) {
-        encabezado.style.backgroundImage = `url('${evento.imagen}')`;
+    const fondo = evento.imagenFondo || evento.imagen;
+    if (fondo) {
+        encabezado.style.backgroundImage = `url('${fondo}')`;
+        if (evento.posicionFondo) encabezado.style.backgroundPosition = `center ${evento.posicionFondo}`;
     }
 
     /* ---------- Aviso según si se sigue haciendo o no ---------- */
