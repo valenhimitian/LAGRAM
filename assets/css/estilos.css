@@ -1971,16 +1971,6 @@ a.tarjeta-iniciativa:hover .tarjeta-iniciativa__mas {
     border-radius: 999px;
 }
 
-/* Propuestas que ya no se hacen: más tenues, como "álbum de recuerdos" */
-.tarjeta-iniciativa--pasada .tarjeta-iniciativa__imagen {
-    filter: grayscale(0.7);
-    transition: filter 0.3s ease;
-}
-
-.tarjeta-iniciativa--pasada:hover .tarjeta-iniciativa__imagen {
-    filter: grayscale(0);
-}
-
 .tarjeta-iniciativa--pasada .tarjeta-iniciativa__titulo {
     color: var(--color-texto);
 }
