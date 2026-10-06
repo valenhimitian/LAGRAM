@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Campamentos de 10 a 12, 13 a 15, 16 a 18 y 22 a 26 años, el Retiro FILO y más iniciativas de LAGRAM.">
-    <meta property="og:title" content="Proyectos | LAGRAM">
-    <meta property="og:description" content="Campamentos de 10 a 12, 13 a 15, 16 a 18 y 22 a 26 años, el Retiro FILO y más iniciativas de LAGRAM.">
+    <meta name="description" content="Las propuestas de LAGRAM: ExpoCarreras, Picnic, Feriadito y más.">
+    <meta property="og:title" content="Propuestas | LAGRAM">
+    <meta property="og:description" content="Las propuestas de LAGRAM: ExpoCarreras, Picnic, Feriadito y más.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_AR">
     <meta name="theme-color" content="#2DA6AE">
-    <title>Proyectos | LAGRAM</title>
+    <title>Propuestas | LAGRAM</title>
     <link rel="icon" type="image/png" href="assets/img/iso.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
 <body>
 
     
-   <header class="header">
+ <header class="header">
     <div class="header__contenedor">
         <!-- Logo -->
         <a href="index.html" class="header__logo-link">
@@ -49,34 +49,36 @@
     </div>
 </header>
 
-    <main class="pagina-proyectos">
-        
-        <!-- Cabecera de la página -->
-        <!-- Encabezado con foto: se cambia la foto en background-image y el encuadre vertical en background-position -->
-        <section class="encabezado" style="background-image: url('assets/img/16-18.jpg'); background-position: center 45%;">
+    <main class="pagina-evento">
+
+        <!-- Encabezado: foto, etiqueta, título y texto los completa js/evento.js -->
+        <section class="encabezado" id="evento-encabezado">
             <div class="encabezado__contenido">
-                <span class="encabezado__etiqueta">Lo que hacemos</span>
-                <h1 class="encabezado__titulo">Nuestros Eventos</h1>
-                <p class="encabezado__texto">Un tiempo para desconectarte de todo y conectarte con lo que importa.</p>
+                <span class="encabezado__etiqueta" id="evento-etiqueta">Propuestas</span>
+                <h1 class="encabezado__titulo" id="evento-titulo">LAGRAM</h1>
+                <p class="encabezado__texto" id="evento-texto"></p>
             </div>
         </section>
 
-        <!-- ZONA PRINCIPAL: Campamentos en zigzag (se dibujan desde js/datos.js) -->
-        <section class="proyectos-vip" id="lista-campamentos" aria-label="Campamentos"></section>
+        <div class="inscripcion">
 
-        <!-- ZONA SECUNDARIA: Otras iniciativas (se dibujan desde js/datos.js) -->
-        <section class="proyectos-secundarios">
-            <h2 class="proyectos-secundarios__titulo">Más iniciativas de LAGRAM</h2>
-            <div class="grid-proyectos" id="grid-otros-proyectos"></div>
-        </section>
+            <!-- Aviso: "ya no se realiza" o "próxima edición a confirmar" -->
+            <div class="inscripcion-aviso inscripcion-aviso--destacado" id="evento-aviso" hidden></div>
 
-        <!-- Propuestas que ya no se hacen: se muestran como parte de la historia -->
-        <section class="proyectos-historicos">
-            <h2 class="proyectos-historicos__titulo">Propuestas que hicimos</h2>
-            <p class="proyectos-historicos__texto">Además de los campamentos, a lo largo de los años surgieron otras propuestas que fueron parte de la historia de LAGRAM.</p>
-            <div class="grid-proyectos" id="grid-historicos"></div>
-        </section>
+            <!-- Preguntas y respuestas (desde js/detalles.js) -->
+            <aside class="inscripcion-info" id="evento-info" hidden></aside>
 
+            <!-- Cartel cuando no hay información o la propuesta no existe -->
+            <section class="cartel-vacio" id="evento-vacio" hidden>
+                <img src="assets/img/logo-hero.png" alt="LAGRAM" class="cartel-vacio__logo">
+                <h2 class="cartel-vacio__titulo" id="vacio-titulo"></h2>
+                <p class="cartel-vacio__texto" id="vacio-texto"></p>
+            </section>
+
+            <div class="evento-volver">
+                <a href="proyectos.html" class="btn btn--secundario">Ver todas las propuestas</a>
+            </div>
+        </div>
     </main>
 
 
@@ -147,5 +149,7 @@
 
     <script src="js/datos.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/detalles.js"></script>
+    <script src="js/evento.js"></script>
 </body>
 </html>

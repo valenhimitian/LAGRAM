@@ -185,23 +185,39 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =========================================
    PROYECTOS: Grilla de otras iniciativas
 ========================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    const grid = document.getElementById("grid-otros-proyectos");
-    if (!grid) return;
-
-    grid.innerHTML = EVENTOS
-        .filter(evento => evento.tipo === "iniciativa")
-        .map(evento => `
-            <article class="tarjeta-iniciativa" id="${escaparHTML(evento.slug)}">
+// Tarjeta de una iniciativa: lleva a su página (evento.html?e=slug)
+function tarjetaIniciativa(evento) {
+    const epoca = !evento.vigente
+        ? `<span class="tarjeta-iniciativa__epoca">${evento.ultimaEdicion ? "Hasta " + escaparHTML(evento.ultimaEdicion) : "Edición pasada"}</span>`
+        : "";
+    return `
+        <a class="tarjeta-iniciativa ${evento.vigente ? "" : "tarjeta-iniciativa--pasada"}" id="${escaparHTML(evento.slug)}"
+           href="evento.html?e=${encodeURIComponent(evento.slug)}">
+            <div class="tarjeta-iniciativa__foto">
                 ${imagenEvento(evento, "tarjeta-iniciativa__imagen")}
-                <div class="tarjeta-iniciativa__cuerpo">
-                    ${evento.edades ? `<span class="tarjeta-iniciativa__edades">${escaparHTML(evento.edades)}</span>` : ""}
-                    <h4 class="tarjeta-iniciativa__titulo">${escaparHTML(evento.titulo)}</h4>
-                    <p class="tarjeta-iniciativa__texto">${escaparHTML(evento.descripcion)}</p>
-                </div>
-            </article>
-        `)
-        .join("");
+                ${epoca}
+            </div>
+            <div class="tarjeta-iniciativa__cuerpo">
+                ${evento.edades ? `<span class="tarjeta-iniciativa__edades">${escaparHTML(evento.edades)}</span>` : ""}
+                <h3 class="tarjeta-iniciativa__titulo">${escaparHTML(evento.titulo)}</h3>
+                ${evento.descripcion ? `<p class="tarjeta-iniciativa__texto">${escaparHTML(evento.descripcion)}</p>` : ""}
+                <span class="tarjeta-iniciativa__mas">${evento.vigente ? "Conocer más" : "Ver cómo era"} →</span>
+            </div>
+        </a>
+    `;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const vigentes = document.getElementById("grid-otros-proyectos");
+    const pasadas = document.getElementById("grid-historicos");
+    const iniciativas = EVENTOS.filter(evento => evento.tipo === "iniciativa");
+
+    if (vigentes) {
+        vigentes.innerHTML = iniciativas.filter(e => e.vigente).map(tarjetaIniciativa).join("");
+    }
+    if (pasadas) {
+        pasadas.innerHTML = iniciativas.filter(e => !e.vigente).map(tarjetaIniciativa).join("");
+    }
 });
 
 /* =========================================
@@ -215,7 +231,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Netlify muestra las URLs sin ".html" (/proyectos en vez de /proyectos.html),
     // así que comparamos los nombres sin la extensión. "" o "index" = Inicio.
     const normalizar = (ruta) => ruta.split("/").pop().replace(/\.html$/, "") || "index";
-    const paginaActual = normalizar(location.pathname);
+    // Las páginas de inscripción y de cada propuesta son parte de "Proyectos"
+    const seccionDe = {
+        "evento": "proyectos",
+        "inscripcion": "proyectos",
+        "inscripcion-22-26": "proyectos",
+        "inscripcion-filo": "proyectos"
+    };
+    const pagina = normalizar(location.pathname);
+    const paginaActual = seccionDe[pagina] || pagina;
 
     document.querySelectorAll(".header__link").forEach(enlace => {
         if (normalizar(enlace.getAttribute("href")) === paginaActual) {

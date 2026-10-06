@@ -68,30 +68,19 @@ const EVENTOS = [
     },
 
     // ---------- OTRAS INICIATIVAS ----------
+    // vigente: true  = se sigue haciendo → aparece en "Más iniciativas"
+    // vigente: false = ya no se hace     → aparece en "Propuestas que hicimos"
+    // ultimaEdicion: texto que se muestra como referencia (ej: "2024")
+    // La info completa de cada una está en js/detalles.js (página evento.html)
     {
         slug: "expocarreras",
         tipo: "iniciativa",
         titulo: "ExpoCarreras",
         imagen: "assets/img/EXPO-CARRERAS.jpg",
+        edades: "16 a 26 años",
         descripcion: "Orientación vocacional y charlas con profesionales para ayudarte a elegir tu futuro.",
-        destacado: false,
-        inscripcion: false
-    },
-    {
-        slug: "lagrampiada",
-        tipo: "iniciativa",
-        titulo: "LAGRAMPIADA",
-        imagen: null,
-        descripcion: "Una noche llena de juegos, deportes, comida rica y amigos.",
-        destacado: false,
-        inscripcion: false
-    },
-    {
-        slug: "arte",
-        tipo: "iniciativa",
-        titulo: "Arte",
-        imagen: null,
-        descripcion: "Un día entero para explorar juntos diferentes formas de hacer arte y experimentar nuevas maneras de conectar con Dios.",
+        vigente: true,
+        ultimaEdicion: "2026",
         destacado: false,
         inscripcion: false
     },
@@ -102,6 +91,8 @@ const EVENTOS = [
         imagen: null,
         edades: "10 a 15 años",
         descripcion: "Un día al aire libre, una escapada con amigos, rica comida, matecitos, charlitas, deportes y juegos. En fin, un planazo. Una hermosa propuesta para cerrar el verano con todo.",
+        vigente: true,
+        ultimaEdicion: "2026",
         destacado: false,
         inscripcion: false
     },
@@ -112,6 +103,42 @@ const EVENTOS = [
         imagen: null,
         edades: "19 a 26 años",
         descripcion: "Es una propuesta nueva, que te invita a desconectar de la rutina para pasar un día rodeado de gente del bien, comiendo rico, en modo chill, con cafecito y/o matecito de por medio y charlando de la vida, como lo harías en cualquier FERIADITO.",
+        vigente: true,
+        ultimaEdicion: "2026",
+        destacado: false,
+        inscripcion: false
+    },
+    {
+        slug: "arte",
+        tipo: "iniciativa",
+        titulo: "Arte",
+        imagen: null,
+        edades: "10 a 18 años",
+        descripcion: "Un día entero para explorar juntos diferentes formas de hacer arte y experimentar nuevas maneras de conectar con Dios.",
+        vigente: false,
+        ultimaEdicion: "2024",
+        destacado: false,
+        inscripcion: false
+    },
+    {
+        slug: "lagrampiada",
+        tipo: "iniciativa",
+        titulo: "LAGRAMPIADA",
+        imagen: null,
+        descripcion: "Una noche llena de juegos, deportes, comida rica y amigos.",
+        vigente: false,
+        ultimaEdicion: null,
+        destacado: false,
+        inscripcion: false
+    },
+    {
+        slug: "gamers",
+        tipo: "iniciativa",
+        titulo: "Gamers",
+        imagen: null,
+        descripcion: null,
+        vigente: false,
+        ultimaEdicion: null,
         destacado: false,
         inscripcion: false
     }
