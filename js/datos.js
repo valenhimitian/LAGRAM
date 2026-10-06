@@ -139,7 +139,7 @@ const EVENTOS = [
         posicionFondo: "35%",
         descripcion: "Una noche llena de juegos, deportes, comida rica y amigos.",
         vigente: false,
-        ultimaEdicion: null,
+        ultimaEdicion: "2024",
         destacado: false,
         inscripcion: false
     },
@@ -153,7 +153,7 @@ const EVENTOS = [
         edades: "11 a 19 años",
         descripcion: "Un día pensado para que chicos y chicas de entre 11 a 19 años, fanáticos de los videojuegos, se encuentren a jugar en un ambiente distinto.",
         vigente: false,
-        ultimaEdicion: null,
+        ultimaEdicion: "2023",
         destacado: false,
         inscripcion: false
     }
