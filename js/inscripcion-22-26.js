@@ -12,45 +12,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!form) return;
 
     const c = CAMPA_22_26;
-    const { desde, hasta } = c.inscripcion;
 
     /* ---------- 1. INFO ---------- */
 
     document.getElementById("c2226-titulo").textContent = c.nombre;
     document.title = `${c.nombre} | LAGRAM`;
 
-    document.getElementById("c2226-info").innerHTML = `
-        <h2 class="inscripcion-info__titulo">Todo lo que tenés que saber</h2>
-        <dl class="inscripcion-info__lista">
-            <div>
-                <dt>¿Dónde?</dt>
-                <dd>${c.lugar ? escaparHTML(c.lugar) + "." : "Lugar a confirmar."}
-                    ${c.salida ? "<br>" + escaparHTML(c.salida) + "." : ""}</dd>
-            </div>
-            <div>
-                <dt>¿Cuándo y cuánto cuesta?</dt>
-                <dd>
-                    <ul class="inscripcion-info__campas">
-                        <li><strong>22 a 26 años</strong>
-                            <span>${c.fechas ? escaparHTML(c.fechas) : "Fechas a confirmar"}</span>
-                            <span>${formatearPrecio(c.costo)}</span></li>
-                    </ul>
-                </dd>
-            </div>
-            <div>
-                <dt>¿Cómo me anoto?</dt>
-                <dd>${desde && hasta
-                        ? `Te anotás del <strong>${formatearFecha(desde)}</strong> al <strong>${formatearFecha(hasta)}</strong> completando el formulario de esta página.`
-                        : `Te anotás desde esta página en las fechas de inscripción, que vamos a anunciar en nuestras redes.`}
-                    Después te escribimos por WhatsApp para confirmarte la vacante y pasarte los datos para el pago.
-                    Desde ese mensaje tenés <strong>${c.diasParaPagar} días</strong> para pagar y asegurar tu lugar.</dd>
-            </div>
-            <div>
-                <dt>¿Más preguntas?</dt>
-                <dd>Escribinos al <a href="https://wa.me/${soloNumeros(c.contacto)}" target="_blank" rel="noopener">${escaparHTML(c.contacto)}</a></dd>
-            </div>
-        </dl>
-    `;
+    document.getElementById("c2226-info").innerHTML = infoCampamento({
+        lugar: c.lugar,
+        salida: c.salida,
+        filas: [{ edades: "22 a 26 años", fechas: c.fechas, costo: c.costo }],
+        inscripcion: c.inscripcion,
+        aviso: c.aviso,
+        diasParaPagar: c.diasParaPagar,
+        contacto: c.contacto,
+        avisoA: "al número que indiques en tu inscripción"
+    });
 
     /* ---------- ESTADO DE LAS INSCRIPCIONES ---------- */
 

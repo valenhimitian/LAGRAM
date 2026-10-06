@@ -1800,3 +1800,11 @@ a.miembro:hover {
         border-radius: 12px;
     }
 }
+
+.inscripcion-info__puntos {
+    margin: 0.6rem 0 0 1.2rem;
+}
+
+.inscripcion-info__puntos li + li {
+    margin-top: 0.4rem;
+}

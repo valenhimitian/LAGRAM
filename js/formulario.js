@@ -49,6 +49,85 @@ function formatearPrecio(numero) {
 }
 
 /**
+ * Arma el cuadro "Todo lo que tenés que saber" de un campamento,
+ * con el mismo texto que tenía la página original de LAGRAM.
+ * Lo que no está cargado en js/datos.js se muestra como "a confirmar".
+ *
+ * @param {object} c
+ * @param {string} c.lugar, c.salida
+ * @param {Array<{edades, fechas, costo}>} c.filas  una fila por campamento
+ * @param {{desde, hasta}} c.inscripcion
+ * @param {string|null} c.aviso       fecha desde la que se avisa quién quedó
+ * @param {number} c.diasParaPagar
+ * @param {string} c.contacto
+ * @param {string} c.avisoA           a qué número se avisa ("al número que indiques...")
+ */
+function infoCampamento(c) {
+    const dia = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("es-AR", { day: "numeric", month: "long" });
+    const { desde, hasta } = c.inscripcion;
+    const varios = c.filas.length > 1;
+
+    const cuando = c.filas.map(f => f.fechas
+        ? `${varios ? escaparHTML(f.edades) + " - " : "El campamento es del "}<strong>${escaparHTML(f.fechas)}</strong>`
+        : `${varios ? escaparHTML(f.edades) + " - " : ""}Fechas a confirmar`).join("<br>");
+
+    const costo = c.filas.map(f => {
+        if (varios) return `${escaparHTML(f.edades)} - <strong>${formatearPrecio(f.costo)}</strong>`;
+        return f.costo ? `El costo es de <strong>${formatearPrecio(f.costo)}</strong>` : "Costo a confirmar";
+    }).join("<br>");
+
+    // "1 al 5 de julio" si es el mismo mes; si no, "28 de junio al 3 de julio"
+    const rango = (a, b) => {
+        const [ma, mb] = [a.slice(5, 7), b.slice(5, 7)];
+        return ma === mb ? `${Number(a.slice(8))} al ${dia(b)}` : `${dia(a)} al ${dia(b)}`;
+    };
+
+    const inscribo = desde && hasta
+        ? `<p>Del <strong>${rango(desde, hasta)}</strong> vas a poder anotarte, sin correr y sin desesperarte.</p>
+           <p>Completá el formulario de esta página con tu información personal y de contacto.</p>
+           <p>Después del ${dia(hasta)} vamos a juntar la información de todos los que se anotaron y hacer un sorteo para otorgar las vacantes.</p>`
+        : `<p>Cuando abran las inscripciones vas a poder anotarte, sin correr y sin desesperarte. Las fechas las vamos a anunciar en nuestras redes.</p>
+           <p>Completá el formulario de esta página con tu información personal y de contacto.</p>
+           <p>Al cerrar las inscripciones vamos a juntar la información de todos los que se anotaron y hacer un sorteo para otorgar las vacantes.</p>`;
+
+    return `
+        <dl class="inscripcion-info__lista">
+            <div>
+                <dt>¿Dónde va a ser el campamento?</dt>
+                <dd><p>${c.lugar ? `El campamento va a ser en el ${escaparHTML(c.lugar)}.` : "Lugar a confirmar."}</p>
+                    ${c.salida ? `<p>${escaparHTML(c.salida)}.</p>` : ""}</dd>
+            </div>
+            <div>
+                <dt>¿Cuándo es el campamento?</dt>
+                <dd><p>${cuando}</p></dd>
+            </div>
+            <div>
+                <dt>¿Cómo me inscribo?</dt>
+                <dd>${inscribo}</dd>
+            </div>
+            <div>
+                <dt>¿Cómo sé si quedé entre los inscriptos al campamento?</dt>
+                <dd>
+                    <p>${c.aviso ? `A partir del <strong>${dia(c.aviso)}</strong>` : "Después del sorteo"} nos vamos a comunicar con todos los que se anotaron para avisarles si quedaron o no en la lista del campamento. Te vamos a avisar por WhatsApp ${escaparHTML(c.avisoA)} y contarte los pasos a seguir:</p>
+                    <ul class="inscripcion-info__puntos">
+                        <li>Vas a tener <strong>${c.diasParaPagar} días</strong> para realizar e informar el pago y así confirmar tu vacante.</li>
+                        <li>Si después de ese tiempo no informaste tu pago, tu inscripción será cancelada y elegiremos al azar a alguien que no entró para ofrecerle la vacante.</li>
+                    </ul>
+                </dd>
+            </div>
+            <div>
+                <dt>¿Cuál es el costo?</dt>
+                <dd><p>${costo}</p></dd>
+            </div>
+            <div>
+                <dt>¿Qué hago si tengo más preguntas?</dt>
+                <dd><p>Escribinos al <a href="https://wa.me/${soloNumeros(c.contacto)}" target="_blank" rel="noopener">${escaparHTML(c.contacto)}</a></p></dd>
+            </div>
+        </dl>
+    `;
+}
+
+/**
  * Muestra el aviso que corresponde al estado de la inscripción y oculta el
  * formulario si no se puede anotar. Devuelve true si el formulario queda visible.
  * Necesita un <div id="aviso-estado" hidden> en la página.

@@ -22,40 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("temporada-titulo").textContent = TEMPORADA.nombre;
 
-    document.getElementById("temporada-info").innerHTML = `
-        <h2 class="inscripcion-info__titulo">Todo lo que tenés que saber</h2>
-        <dl class="inscripcion-info__lista">
-            <div>
-                <dt>¿Dónde?</dt>
-                <dd>${escaparHTML(TEMPORADA.lugar)}.<br>${escaparHTML(TEMPORADA.salida)}.</dd>
-            </div>
-            <div>
-                <dt>¿Cuándo y cuánto cuesta?</dt>
-                <dd>
-                    <ul class="inscripcion-info__campas">
-                        ${campamentos.map(c => `
-                            <li><strong>${c.edadMin} a ${c.edadMax} años</strong>
-                                <span>${c.fechas ? escaparHTML(c.fechas) : "Fechas a confirmar"}</span>
-                                <span>${formatearPrecio(c.costo)}</span></li>
-                        `).join("")}
-                    </ul>
-                </dd>
-            </div>
-            <div>
-                <dt>¿Cómo funciona?</dt>
-                <dd>${TEMPORADA.inscripcion.desde && TEMPORADA.inscripcion.hasta
-                        ? `Te anotás del <strong>${formatearFecha(TEMPORADA.inscripcion.desde)}</strong> al
-                           <strong>${formatearFecha(TEMPORADA.inscripcion.hasta)}</strong>, sin correr y sin desesperarte.`
-                        : `Te anotás desde esta página en las fechas de inscripción, que vamos a anunciar en nuestras redes.`}
-                    Después hacemos un sorteo para otorgar las vacantes y te avisamos por WhatsApp al celular de tu adulto responsable.
-                    Si quedaste, tenés <strong>${TEMPORADA.diasParaPagar} días</strong> para pagar y confirmar tu lugar.</dd>
-            </div>
-            <div>
-                <dt>¿Más preguntas?</dt>
-                <dd>Escribinos al <a href="https://wa.me/${TEMPORADA.contacto.replace(/\D/g, "")}" target="_blank" rel="noopener">${escaparHTML(TEMPORADA.contacto)}</a></dd>
-            </div>
-        </dl>
-    `;
+    document.getElementById("temporada-info").innerHTML = infoCampamento({
+        lugar: TEMPORADA.lugar,
+        salida: TEMPORADA.salida,
+        filas: campamentos.map(c => ({ edades: `${c.edadMin} a ${c.edadMax} años`, fechas: c.fechas, costo: c.costo })),
+        inscripcion: TEMPORADA.inscripcion,
+        aviso: TEMPORADA.aviso,
+        diasParaPagar: TEMPORADA.diasParaPagar,
+        contacto: TEMPORADA.contacto,
+        avisoA: "al número del adulto responsable que indiques en tu inscripción"
+    });
 
     /* ---------- ESTADO DE LAS INSCRIPCIONES ---------- */
     // Se calcula con las fechas de TEMPORADA.inscripcion (ver js/script.js)

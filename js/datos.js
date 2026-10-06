@@ -142,13 +142,14 @@ const EVENTOS = [
 const TEMPORADA = {
     nombre: "Campamentos de Verano 2027",
     inscripcion: { desde: null, hasta: null, listaEsperaHasta: null },
-    lugar: 'Parque "El Sembrador", Máximo Paz, Buenos Aires',
+    aviso: null,                  // desde cuándo se avisa quién quedó, ej: "2026-12-09"
+    lugar: 'parque "El Sembrador" en la localidad de Máximo Paz, Buenos Aires',
     salida: "Los micros salen de Irigoyen y Tinogasta, Villa Real, CABA (Escuela ECEA)",
     diasParaPagar: 5,
     contacto: "+54 9 11 6376-5990",
 
     // Una entrada por campamento. edadMin/edadMax arman la lista de edades del formulario.
-    // fechas: texto libre (ej: "22 al 25 de enero"), costo: número (ej: 150000)
+    // fechas: texto libre (ej: "22 al 25 de Enero"), costo: número (ej: 150000)
     campamentos: [
         { slug: "10-12", edadMin: 10, edadMax: 12, fechas: null, costo: null },
         { slug: "13-15", edadMin: 13, edadMax: 15, fechas: null, costo: null },
@@ -161,9 +162,10 @@ const TEMPORADA = {
 const CAMPA_22_26 = {
     nombre: "Campamento 22 a 26",
     inscripcion: { desde: null, hasta: null, listaEsperaHasta: null },
-    lugar: null,                  // ej: 'Parque "El Sembrador", Máximo Paz, Buenos Aires'
-    salida: null,                 // ej: "Los micros salen de ..."
-    fechas: null,                 // texto libre, ej: "13 al 16 de febrero"
+    aviso: null,                  // desde cuándo se avisa quién quedó, ej: "2027-07-09"
+    lugar: 'parque "El Sembrador" en la localidad de Máximo Paz, Buenos Aires',
+    salida: "Los micros salen de Irigoyen y Tinogasta, Villa Real, CABA (Escuela ECEA)",
+    fechas: null,                 // texto libre, ej: "14 al 17 de Agosto"
     costo: null,                  // ej: 180000
     diasParaPagar: 5,
     contacto: "+54 9 11 6376-5990"
