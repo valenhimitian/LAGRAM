@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Inscribite a los campamentos de LAGRAM para 10 a 12, 13 a 15 y 16 a 18 años.">
-    <meta property="og:title" content="Inscripciones | LAGRAM">
-    <meta property="og:description" content="Inscribite a los campamentos de LAGRAM para 10 a 12, 13 a 15 y 16 a 18 años.">
+    <meta name="description" content="Inscribite al Campamento 22 a 26 de LAGRAM.">
+    <meta property="og:title" content="Campamento 22 a 26 | LAGRAM">
+    <meta property="og:description" content="Inscribite al Campamento 22 a 26 de LAGRAM.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_AR">
     <meta name="theme-color" content="#2DA6AE">
-    <title>Inscripciones | LAGRAM</title>
+    <title>Campamento 22 a 26 | LAGRAM</title>
     <link rel="icon" type="image/png" href="assets/img/iso.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,8 +51,8 @@
 
     <main class="pagina-inscripcion">
         <section class="proyectos-header">
-            <h1 id="temporada-titulo">Inscripciones</h1>
-            <p>Campamentos de 10 a 12, 13 a 15 y 16 a 18 años.</p>
+            <h1 id="c2226-titulo">Campamento 22 a 26</h1>
+            <p>Un campamento para jóvenes de 22 a 26 años.</p>
         </section>
 
         <div class="inscripcion">
@@ -60,51 +60,46 @@
             <!-- Aviso de estado: abre pronto / cerrada / lista de espera (lo completa el JS) -->
             <div class="inscripcion-aviso inscripcion-aviso--destacado" id="aviso-estado" hidden></div>
 
-            <!-- INFO DE LA TEMPORADA (se completa desde js/datos.js) -->
-            <aside class="inscripcion-info" id="temporada-info" aria-label="Información de la temporada"></aside>
-
+            <!-- INFO DEL CAMPAMENTO (se completa desde js/datos.js) -->
+            <aside class="inscripcion-info" id="c2226-info" aria-label="Información del campamento"></aside>
 
             <!-- =========================================
-                 FORMULARIO (4 pasos)
+                 FORMULARIO (3 pasos)
             ========================================= -->
-            <form class="formulario" id="form-inscripcion" novalidate>
+            <form class="formulario" id="form-22-26" novalidate>
 
-                <!-- Barra de progreso -->
                 <div class="formulario__progreso">
-                    <p class="formulario__paso-texto" aria-live="polite">Paso 1 de 4</p>
+                    <p class="formulario__paso-texto" aria-live="polite"></p>
                     <div class="formulario__barra"><div class="formulario__barra-relleno"></div></div>
                 </div>
 
-                <!-- PASO 1: Campamento -->
+                <!-- PASO 1: Tus datos -->
                 <fieldset class="formulario__paso" data-paso="1">
-                    <legend class="formulario__titulo">Elegí tu campamento</legend>
-
-                    <div class="campo" data-campo="campamento">
-                        <p class="campo__label" id="label-campamento">¿A qué campamento querés ir? <span class="campo__req">*</span></p>
-                        <div class="opciones" role="radiogroup" aria-labelledby="label-campamento" id="opciones-campamento">
-                            <!-- Las opciones se generan desde js/datos.js -->
-                        </div>
-                        <p class="campo__ayuda">La edad de los campamentos está delimitada. Si no estás dentro de la franja indicada pero creés que es muy importante para vos participar, solicitá una autorización, pero no alteres la información de tu edad.</p>
-                        <p class="campo__error" aria-live="polite"></p>
-                    </div>
+                    <legend class="formulario__titulo">Tus datos</legend>
 
                     <div class="campo" data-campo="edad">
                         <label class="campo__label" for="edad">¿Cuántos años vas a tener al comenzar el campamento? <span class="campo__req">*</span></label>
-                        <select id="edad" name="edad" required disabled>
-                            <option value="">Primero elegí el campamento</option>
+                        <select id="edad" name="edad" required>
+                            <option value="">Elegí tu edad</option>
+                            <option value="menor">Menos de 22</option>
+                            <option value="22">22 años</option>
+                            <option value="23">23 años</option>
+                            <option value="24">24 años</option>
+                            <option value="25">25 años</option>
+                            <option value="26">26 años</option>
+                            <option value="mayor">Más de 26</option>
                         </select>
                         <p class="campo__error" aria-live="polite"></p>
                     </div>
 
-                    <div class="inscripcion-aviso" id="aviso-edad" hidden>
+                    <div class="inscripcion-aviso" data-mostrar-si="edad=menor" hidden>
                         <p>Tu edad está fuera de la franja de este campamento. Podés enviar la inscripción igual:
-                           el equipo la va a revisar y se va a comunicar con vos para ver si se puede autorizar.</p>
+                           el equipo la va a revisar y se va a comunicar con vos.</p>
                     </div>
-                </fieldset>
-
-                <!-- PASO 2: Datos personales -->
-                <fieldset class="formulario__paso" data-paso="2" hidden>
-                    <legend class="formulario__titulo">Tus datos</legend>
+                    <div class="inscripcion-aviso" data-mostrar-si="edad=mayor" hidden>
+                        <p>Tu edad está fuera de la franja de este campamento. Podés enviar la inscripción igual:
+                           el equipo la va a revisar y se va a comunicar con vos.</p>
+                    </div>
 
                     <div class="campo-fila">
                         <div class="campo" data-campo="nombre">
@@ -142,8 +137,8 @@
                     </div>
                 </fieldset>
 
-                <!-- PASO 3: Contanos algo de vos -->
-                <fieldset class="formulario__paso" data-paso="3" hidden>
+                <!-- PASO 2: Contanos algo de vos -->
+                <fieldset class="formulario__paso" data-paso="2" hidden>
                     <legend class="formulario__titulo">Contanos algo de vos</legend>
 
                     <div class="campo" data-campo="va_iglesia">
@@ -161,20 +156,14 @@
                         <p class="campo__error" aria-live="polite"></p>
                     </div>
 
-                    <div class="campo" data-campo="colegio">
-                        <label class="campo__label" for="colegio">¿A qué colegio vas? <span class="campo__req">*</span></label>
-                        <input type="text" id="colegio" name="colegio" required maxlength="100">
-                        <p class="campo__error" aria-live="polite"></p>
-                    </div>
-
                     <div class="campo" data-campo="dieta">
                         <p class="campo__label" id="label-dieta">¿Tenés alguna dieta especial? <span class="campo__req">*</span></p>
-                        <p class="campo__ayuda">Contanos si tenés alguna alergia o restricción médica a ciertos alimentos. Tené en cuenta que elegir una dieta implica adaptar el menú durante todo el campamento.</p>
+                        <p class="campo__ayuda">Contanos si tenés alguna alergia o restricción médica a ciertos alimentos.</p>
                         <div class="opciones" role="radiogroup" aria-labelledby="label-dieta">
                             <label class="opcion"><input type="radio" name="dieta" value="ninguna" required><span>No</span></label>
-                            <label class="opcion"><input type="radio" name="dieta" value="vegetariana"><span>Soy vegetariano/a</span></label>
-                            <label class="opcion"><input type="radio" name="dieta" value="vegana"><span>Soy vegano/a</span></label>
-                            <label class="opcion"><input type="radio" name="dieta" value="celiaca"><span>Soy celíaco/a</span></label>
+                            <label class="opcion"><input type="radio" name="dieta" value="vegetariana"><span>Dieta vegetariana</span></label>
+                            <label class="opcion"><input type="radio" name="dieta" value="vegana"><span>Dieta vegana</span></label>
+                            <label class="opcion"><input type="radio" name="dieta" value="celiaca"><span>Dieta Celíaca (sin TACC)</span></label>
                             <label class="opcion"><input type="radio" name="dieta" value="otra"><span>Otra</span></label>
                         </div>
                         <p class="campo__error" aria-live="polite"></p>
@@ -195,17 +184,10 @@
                         </div>
                         <p class="campo__error" aria-live="polite"></p>
                     </div>
-
-                    <div class="campo" data-campo="unir_con">
-                        <label class="campo__label" for="unir_con">"Unir" mi inscripción con</label>
-                        <p class="campo__ayuda">Durante el sorteo de vacantes podés unir tu inscripción con <strong>una sola persona</strong> para que entren (o no) juntos. Escribí su nombre y apellido. Las uniones con más de una persona no se tienen en cuenta.</p>
-                        <input type="text" id="unir_con" name="unir_con" maxlength="100" placeholder="Nombre y apellido">
-                        <p class="campo__error" aria-live="polite"></p>
-                    </div>
                 </fieldset>
 
-                <!-- PASO 4: Contacto -->
-                <fieldset class="formulario__paso" data-paso="4" hidden>
+                <!-- PASO 3: Contacto -->
+                <fieldset class="formulario__paso" data-paso="3" hidden>
                     <legend class="formulario__titulo">Cómo te contactamos</legend>
 
                     <div class="campo" data-campo="direccion">
@@ -233,18 +215,9 @@
                         <p class="campo__error" aria-live="polite"></p>
                     </div>
 
-                    <div class="campo" data-campo="tiene_celular">
-                        <p class="campo__label" id="label-celular">¿Tenés teléfono celular propio? <span class="campo__req">*</span></p>
-                        <div class="opciones opciones--fila" role="radiogroup" aria-labelledby="label-celular">
-                            <label class="opcion"><input type="radio" name="tiene_celular" value="si" required><span>Sí</span></label>
-                            <label class="opcion"><input type="radio" name="tiene_celular" value="no"><span>No</span></label>
-                        </div>
-                        <p class="campo__error" aria-live="polite"></p>
-                    </div>
-
-                    <div class="campo" data-campo="celular" data-mostrar-si="tiene_celular=si" hidden>
-                        <label class="campo__label" for="celular">¿Cuál es el número? <span class="campo__req">*</span></label>
-                        <input type="tel" id="celular" name="celular" autocomplete="tel" placeholder="Ej: 11 6376 5990">
+                    <div class="campo" data-campo="celular">
+                        <label class="campo__label" for="celular">Tu WhatsApp <span class="campo__req">*</span></label>
+                        <input type="tel" id="celular" name="celular" autocomplete="tel" required placeholder="Ej: 11 6376 5990">
                         <p class="campo__error" aria-live="polite"></p>
                     </div>
 
@@ -261,17 +234,6 @@
                         </div>
                     </div>
 
-                    <div class="formulario__destacado">
-                        <h3>Celular de contacto</h3>
-                        <p><strong>Importante:</strong> al celular del adulto responsable vamos a enviar toda la información de la inscripción y del pago. Asegurate de que esté bien escrito y en funcionamiento.</p>
-
-                        <div class="campo" data-campo="celular_adulto">
-                            <label class="campo__label" for="celular_adulto">El celular de tu adulto responsable <span class="campo__req">*</span></label>
-                            <input type="tel" id="celular_adulto" name="celular_adulto" required placeholder="Ej: 11 6376 5990">
-                            <p class="campo__error" aria-live="polite"></p>
-                        </div>
-                    </div>
-
                     <div class="campo" data-campo="comentarios">
                         <label class="campo__label" for="comentarios">¿Hay algo más que nos quieras contar?</label>
                         <textarea id="comentarios" name="comentarios" rows="3" maxlength="1000"></textarea>
@@ -281,13 +243,12 @@
                     <div class="campo" data-campo="consentimiento">
                         <label class="opcion opcion--check">
                             <input type="checkbox" name="consentimiento" value="si" required>
-                            <span>Mi adulto responsable y yo estamos de acuerdo en que LAGRAM use estos datos únicamente para gestionar la inscripción al campamento.</span>
+                            <span>Estoy de acuerdo en que LAGRAM use estos datos únicamente para gestionar mi inscripción al campamento.</span>
                         </label>
                         <p class="campo__error" aria-live="polite"></p>
                     </div>
                 </fieldset>
 
-                <!-- Navegación entre pasos -->
                 <div class="formulario__acciones">
                     <button type="button" class="btn btn--secundario" data-accion="anterior" hidden>Anterior</button>
                     <button type="button" class="btn btn--primario" data-accion="siguiente">Continuar</button>
@@ -296,10 +257,9 @@
                 <p class="formulario__error-general" role="alert"></p>
             </form>
 
-            <!-- Pantalla de éxito -->
             <section class="formulario-exito" id="formulario-exito" hidden tabindex="-1">
                 <h2>¡Listo, ya estás anotado/a!</h2>
-                <p>Recibimos tu inscripción. Después del cierre hacemos el sorteo de vacantes y te avisamos por WhatsApp al celular de tu adulto responsable.</p>
+                <p>Recibimos tu inscripción. Te vamos a escribir por WhatsApp para confirmarte la vacante y contarte los pasos a seguir.</p>
                 <a href="index.html" class="btn btn--secundario">Volver al inicio</a>
             </section>
         </div>
@@ -375,6 +335,6 @@
     <script src="js/api.js"></script>
     <script src="js/script.js"></script>
     <script src="js/formulario.js"></script>
-    <script src="js/inscripcion-campamentos.js"></script>
+    <script src="js/inscripcion-22-26.js"></script>
 </body>
 </html>

@@ -71,6 +71,7 @@ const seAceptanInscripciones = (estado) => estado === "abierta" || estado === "l
 // Qué fechas de inscripción le corresponden a cada evento con formulario
 function ventanaDeEvento(evento) {
     if (evento.slug === "filo") return FILO.inscripcion;
+    if (evento.slug === "22-26") return CAMPA_22_26.inscripcion;
     if (TEMPORADA.campamentos.some(c => c.slug === evento.slug)) return TEMPORADA.inscripcion;
     return null;
 }
@@ -279,8 +280,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. LAS CAMPAÑAS
     // No tienen fechas propias: se muestran según el estado de las inscripciones
     // (js/datos.js). Se muestra la primera de la lista que esté activa.
-    const campamentos = estadoInscripcion(TEMPORADA.inscripcion);
-    const filo = estadoInscripcion(FILO.inscripcion);
+    // estadoVisible: en modo demo (?demo) se muestran como abiertas
+    const campamentos = estadoVisible(TEMPORADA.inscripcion);
+    const filo = estadoVisible(FILO.inscripcion);
+    const c2226 = estadoVisible(CAMPA_22_26.inscripcion);
     const abreCampamentos = TEMPORADA.inscripcion.desde;
 
     const campañasLAGRAM = [
@@ -294,6 +297,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 : 'Asegurá tu lugar para los campamentos de 10-12, 13-15 y 16-18. ¡No te quedes afuera!',
             botonTexto: 'Anotarme ahora',
             botonLink: 'inscripcion.html'
+        },
+        {
+            id: 'inscripciones-22-26',
+            activa: seAceptanInscripciones(c2226),
+            imagen: 'assets/img/22-26.jpg',
+            titulo: '¡Inscripciones abiertas para el 22 a 26!',
+            texto: 'Una pausa en la carrera de la vida para revisar el camino y ganar impulso para seguir avanzando.',
+            botonTexto: 'Anotarme',
+            botonLink: 'inscripcion-22-26.html'
         },
         {
             id: 'inscripciones-filo',

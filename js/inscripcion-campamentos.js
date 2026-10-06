@@ -99,11 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Si viene de un botón "Inscribirme" (inscripcion.html?evento=13-15), lo dejamos elegido
     const eventoURL = new URLSearchParams(location.search).get("evento");
-    if (eventoURL === "22-26") {
-        document.getElementById("aviso-22-26").hidden = false;
-        form.hidden = true;
-        return;
-    }
     const radioURL = form.querySelector(`input[name="campamento"][value="${CSS.escape(eventoURL || "")}"]`);
     if (radioURL) {
         radioURL.checked = true;

@@ -73,7 +73,7 @@ de inscripciones de verano. Un panel de administración en Spring Boot queda com
 ## 🗓️ Inscripciones: cómo se abren y cierran
 
 Las inscripciones se abren y cierran **solas** según las fechas cargadas en `js/datos.js`
-(`TEMPORADA.inscripcion` para los campamentos de 10 a 18 y `FILO.inscripcion` para FILO).
+(`TEMPORADA.inscripcion` para los campamentos de 10 a 18, `CAMPA_22_26.inscripcion` y `FILO.inscripcion`).
 Sin fechas cargadas, todas quedan en "próximamente" y no se muestra ningún formulario.
 El mismo estado controla los botones de Proyectos, el pop-up del Inicio y los formularios.
 
@@ -90,7 +90,7 @@ El mismo estado controla los botones de Proyectos, el pop-up del Inicio y los fo
 * [x] Página de Equipo
 * [x] Formulario de inscripción propio con validación (10 a 18)
 * [x] Formulario de pre-inscripción a FILO
-* [ ] Formulario del 22 a 26
+* [x] Formulario del 22 a 26
 * [ ] Tablas `eventos` e `inscripciones` en Supabase con políticas RLS
 * [ ] Conectar el frontend a Supabase (`js/api.js`) y reemplazar `js/datos.js`
 * [ ] Deploy en Netlify con el dominio de LAGRAM

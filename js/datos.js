@@ -53,7 +53,8 @@ const EVENTOS = [
         imagen: "assets/img/22-26.jpg",
         descripcion: "Este campamento invita a hacer una pausa en la carrera de la vida para revisar el camino y ganar impulso para seguir avanzando.",
         destacado: false,
-        inscripcion: false   // Todavía no tiene formulario online
+        inscripcion: true,
+        formulario: "inscripcion-22-26.html"
     },
     {
         slug: "filo",
@@ -153,6 +154,19 @@ const TEMPORADA = {
         { slug: "13-15", edadMin: 13, edadMax: 15, fechas: null, costo: null },
         { slug: "16-18", edadMin: 16, edadMax: 18, fechas: null, costo: null }
     ]
+};
+
+/* ---------- CAMPAMENTO 22 A 26 ---------- */
+// Lo que está en null se muestra como "a confirmar".
+const CAMPA_22_26 = {
+    nombre: "Campamento 22 a 26",
+    inscripcion: { desde: null, hasta: null, listaEsperaHasta: null },
+    lugar: null,                  // ej: 'Parque "El Sembrador", Máximo Paz, Buenos Aires'
+    salida: null,                 // ej: "Los micros salen de ..."
+    fechas: null,                 // texto libre, ej: "13 al 16 de febrero"
+    costo: null,                  // ej: 180000
+    diasParaPagar: 5,
+    contacto: "+54 9 11 6376-5990"
 };
 
 /* ---------- FILO (retiro del Equipo de Trabajo) ---------- */
