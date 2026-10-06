@@ -1747,3 +1747,56 @@ a.miembro:hover {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================
+   ESTADO DE INSCRIPCIONES
+========================================= */
+
+/* "Más info" + "Inscripciones próximamente" en los campamentos */
+.proyecto-row__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+}
+
+.proyecto-row__estado {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #777;
+}
+
+/* Cartel fijo del modo vista previa (?demo) */
+.cartel-demo {
+    position: fixed;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    z-index: 2000;
+    width: max-content;
+    max-width: calc(100% - 2rem);
+    background: var(--color-texto);
+    color: #fff;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.cartel-demo a {
+    color: var(--color-primario);
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .proyecto-row__acciones {
+        justify-content: center;
+    }
+
+    .cartel-demo {
+        border-radius: 12px;
+    }
+}

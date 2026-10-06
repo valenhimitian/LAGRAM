@@ -43,8 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div>
                 <dt>¿Cómo funciona?</dt>
-                <dd>Te anotás del <strong>${formatearFecha(TEMPORADA.inscripcion.desde)}</strong> al
-                    <strong>${formatearFecha(TEMPORADA.inscripcion.hasta)}</strong>, sin correr y sin desesperarte.
+                <dd>${TEMPORADA.inscripcion.desde && TEMPORADA.inscripcion.hasta
+                        ? `Te anotás del <strong>${formatearFecha(TEMPORADA.inscripcion.desde)}</strong> al
+                           <strong>${formatearFecha(TEMPORADA.inscripcion.hasta)}</strong>, sin correr y sin desesperarte.`
+                        : `Te anotás desde esta página en las fechas de inscripción, que vamos a anunciar en nuestras redes.`}
                     Después hacemos un sorteo para otorgar las vacantes y te avisamos por WhatsApp al celular de tu adulto responsable.
                     Si quedaste, tenés <strong>${TEMPORADA.diasParaPagar} días</strong> para pagar y confirmar tu lugar.</dd>
             </div>
@@ -55,19 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
         </dl>
     `;
 
-    /* ---------- ESTADO DE LA TEMPORADA ---------- */
+    /* ---------- ESTADO DE LAS INSCRIPCIONES ---------- */
+    // Se calcula con las fechas de TEMPORADA.inscripcion (ver js/script.js)
 
-    const avisoEstado = document.getElementById("aviso-estado");
-    if (TEMPORADA.estado === "cerrada") {
-        avisoEstado.innerHTML = "<p>Las inscripciones de esta temporada están cerradas. ¡Seguinos en las redes para enterarte de la próxima!</p>";
-        avisoEstado.hidden = false;
-        form.hidden = true;
-        return;
-    }
-    if (TEMPORADA.estado === "lista-espera") {
-        avisoEstado.innerHTML = "<p><strong>¡Importante!</strong> La fecha de inscripción ya terminó, pero todavía podés anotarte: vas a entrar automáticamente a la lista de espera y te contactamos si se libera un cupo.</p>";
-        avisoEstado.hidden = false;
-    }
+    const estado = estadoVisible(TEMPORADA.inscripcion);
+    if (!mostrarAvisoDeEstado(form, estado, TEMPORADA.inscripcion)) return;
 
     /* ---------- 2. OPCIONES DE CAMPAMENTO Y EDAD ---------- */
 
@@ -158,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 email: texto("email")?.toLowerCase() ?? null,
                 celular_adulto: soloNumeros(d.get("celular_adulto")),
                 comentarios: texto("comentarios"),
-                lista_espera: TEMPORADA.estado === "lista-espera"
+                lista_espera: estado === "lista-espera"
             };
         }
     });

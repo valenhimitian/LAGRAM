@@ -30,6 +30,84 @@ function linkInscripcion(evento) {
 }
 
 /* =========================================
+   ESTADO DE LAS INSCRIPCIONES
+   -----------------------------------------
+   Una sola función decide si una inscripción está abierta, según las
+   fechas de js/datos.js. La usan los botones de Proyectos, el pop-up y
+   los formularios, así nunca se contradicen entre sí.
+========================================= */
+
+// "2026-12-01" → "1 de diciembre"
+function formatearDia(iso) {
+    return new Date(iso + "T12:00:00").toLocaleDateString("es-AR", { day: "numeric", month: "long" });
+}
+
+// Lee ?algo de la URL (ej: "demo" o "hoy")
+const parametroURL = (nombre) => new URLSearchParams(location.search).get(nombre);
+
+// Fecha de hoy en formato "AAAA-MM-DD".
+// Para PROBAR otros días sin tocar datos.js: agregá ?hoy=2026-12-05 a la URL.
+function hoyISO() {
+    const simulado = parametroURL("hoy");
+    if (/^\d{4}-\d{2}-\d{2}$/.test(simulado || "")) return simulado;
+    return new Date().toLocaleDateString("en-CA");
+}
+
+/**
+ * Devuelve "proximamente" | "abierta" | "lista-espera" | "cerrada"
+ * @param {{desde, hasta, listaEsperaHasta}} ventana  fechas de inscripción
+ */
+function estadoInscripcion(ventana) {
+    const hoy = hoyISO();
+    if (!ventana || !ventana.desde || !ventana.hasta) return "proximamente";
+    if (hoy < ventana.desde) return "proximamente";
+    if (hoy <= ventana.hasta) return "abierta";
+    if (ventana.listaEsperaHasta && hoy <= ventana.listaEsperaHasta) return "lista-espera";
+    return "cerrada";
+}
+
+const seAceptanInscripciones = (estado) => estado === "abierta" || estado === "lista-espera";
+
+// Qué fechas de inscripción le corresponden a cada evento con formulario
+function ventanaDeEvento(evento) {
+    if (evento.slug === "filo") return FILO.inscripcion;
+    if (TEMPORADA.campamentos.some(c => c.slug === evento.slug)) return TEMPORADA.inscripcion;
+    return null;
+}
+
+/* ---------- MODO VISTA PREVIA ----------
+   Para mostrar los formularios aunque las inscripciones estén cerradas
+   (por ejemplo, en una reunión con LAGRAM).
+   - Entrar a cualquier página con ?demo   → se activa para toda la visita
+   - Entrar con ?demo=no                   → se desactiva
+   Lo guardamos en sessionStorage: se borra solo al cerrar la pestaña. */
+function modoDemo() {
+    const param = parametroURL("demo");
+    try {
+        if (param === "no") sessionStorage.removeItem("lagram_demo");
+        else if (param !== null) sessionStorage.setItem("lagram_demo", "si");
+        return sessionStorage.getItem("lagram_demo") === "si";
+    } catch {
+        return param !== null && param !== "no";   // si el navegador bloquea el storage
+    }
+}
+
+// En modo demo, cualquier inscripción cerrada se muestra como abierta
+function estadoVisible(ventana) {
+    const real = estadoInscripcion(ventana);
+    return modoDemo() && !seAceptanInscripciones(real) ? "abierta" : real;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (!modoDemo()) return;
+    const cartel = document.createElement("div");
+    cartel.className = "cartel-demo";
+    cartel.innerHTML = `Vista previa: los formularios se muestran aunque las inscripciones estén cerradas.
+                        <a href="${location.pathname}?demo=no">Salir</a>`;
+    document.body.appendChild(cartel);
+});
+
+/* =========================================
    INICIO: Tarjetas de proyectos destacados
 ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
@@ -54,6 +132,22 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =========================================
    PROYECTOS: Campamentos en zigzag
 ========================================= */
+
+// Abierta → "Inscribirme". Cerrada → "Más info" + aviso, que lleva a la
+// página del formulario, donde está toda la info y el detalle de cuándo abre.
+function botonInscripcion(evento) {
+    if (!evento.inscripcion) return "";
+    const estado = estadoVisible(ventanaDeEvento(evento));
+    if (seAceptanInscripciones(estado)) {
+        return `<a href="${linkInscripcion(evento)}" class="btn btn--primario">Inscribirme</a>`;
+    }
+    const aviso = estado === "cerrada" ? "Inscripciones cerradas" : "Inscripciones próximamente";
+    return `<div class="proyecto-row__acciones">
+                <a href="${linkInscripcion(evento)}" class="btn btn--secundario">Más info</a>
+                <span class="proyecto-row__estado">${aviso}</span>
+            </div>`;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const contenedor = document.getElementById("lista-campamentos");
     if (!contenedor) return;
@@ -68,9 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="proyecto-row__texto">
                     <h2>${escaparHTML(evento.titulo)}</h2>
                     <p>${escaparHTML(evento.descripcion)}</p>
-                    ${evento.inscripcion
-                        ? `<a href="${linkInscripcion(evento)}" class="btn btn--primario">Inscribirme</a>`
-                        : ""}
+                    ${botonInscripcion(evento)}
                 </div>
             </article>
         `)
@@ -184,59 +276,55 @@ document.addEventListener('DOMContentLoaded', () => {
     const popup = document.getElementById('popup-novedades');
     if (!popup) return;
 
-    // 1. LA BASE DE DATOS DE CAMPAÑAS
-    // El código muestra la primera que coincida con la fecha de hoy.
-    // Si una campaña no tiene foto propia, usa popup-banner.png.
+    // 1. LAS CAMPAÑAS
+    // No tienen fechas propias: se muestran según el estado de las inscripciones
+    // (js/datos.js). Se muestra la primera de la lista que esté activa.
+    const campamentos = estadoInscripcion(TEMPORADA.inscripcion);
+    const filo = estadoInscripcion(FILO.inscripcion);
+    const abreCampamentos = TEMPORADA.inscripcion.desde;
+
     const campañasLAGRAM = [
         {
-            id: 'previa-verano-27',
-            inicio: '2026-10-01',
-            fin: '2026-11-14', // El 15/11 la reemplaza la de inscripciones abiertas
+            id: 'inscripciones-campamentos', // Si cambiás este ID, el cartel le vuelve a aparecer a quienes ya lo cerraron
+            activa: seAceptanInscripciones(campamentos),
+            imagen: 'assets/img/13-15.jpg',
+            titulo: campamentos === 'lista-espera' ? '¡Todavía podés anotarte!' : '¡Inscripciones Abiertas!',
+            texto: campamentos === 'lista-espera'
+                ? 'Las inscripciones cerraron, pero podés sumarte a la lista de espera de los campamentos de 10-12, 13-15 y 16-18.'
+                : 'Asegurá tu lugar para los campamentos de 10-12, 13-15 y 16-18. ¡No te quedes afuera!',
+            botonTexto: 'Anotarme ahora',
+            botonLink: 'inscripcion.html'
+        },
+        {
+            id: 'inscripciones-filo',
+            activa: seAceptanInscripciones(filo),
+            imagen: 'assets/img/FILO.jpg',
+            titulo: '¡Se viene FILO!',
+            texto: 'El retiro del Equipo de Trabajo. Tiempo de recargar energías, capacitarnos y buscar a Dios juntos.',
+            botonTexto: 'Pre-inscribirme',
+            botonLink: 'inscripcion-filo.html'
+        },
+        {
+            id: 'previa-campamentos',
+            activa: campamentos === 'proximamente',
             imagen: 'assets/img/16-18.jpg',
             titulo: '¡Se vienen los campas de verano!',
-            texto: 'Muy pronto abrimos las inscripciones para los campamentos de 10 a 12, 13 a 15 y 16 a 18. ¡Estate atento!',
+            texto: abreCampamentos
+                ? `Las inscripciones para los campamentos de 10 a 12, 13 a 15 y 16 a 18 abren el ${formatearDia(abreCampamentos)}. ¡Estate atento!`
+                : 'Muy pronto abrimos las inscripciones para los campamentos de 10 a 12, 13 a 15 y 16 a 18. ¡Estate atento!',
             botonTexto: 'Conocé los campamentos',
             botonLink: 'proyectos.html'
-        },
-        {
-            id: 'verano-27', // Si cambiás este ID, el cartel le vuelve a aparecer a quienes ya lo cerraron
-            inicio: '2026-11-15',
-            fin: '2027-01-31',
-            imagen: 'assets/img/popup-banner.png', // TODO: reemplazar por una foto de verano
-            titulo: '¡Inscripciones Abiertas!',
-            texto: 'Asegurá tu lugar para los campamentos de 10-12, 13-15 y 16-18. ¡No te quedes afuera!',
-            botonTexto: 'Anotarme ahora',
-            botonLink: 'proyectos.html#10-12'
-        },
-        {
-            id: 'filo-27',
-            inicio: '2027-02-15',
-            fin: '2027-04-10',
-            imagen: 'assets/img/FILO.jpg',
-            titulo: 'Retiro FILO',
-            texto: 'El evento exclusivo para staff. Tiempo de recargar energías, capacitarnos y buscar a Dios juntos.',
-            botonTexto: 'Más info',
-            botonLink: 'proyectos.html#filo'
-        },
-        {
-            id: 'expocarreras-26',
-            inicio: '2026-08-01',
-            fin: '2026-08-29', // El evento fue el sábado 29 de agosto
-            imagen: 'assets/img/popup-banner.png',
-            titulo: 'ExpoCarreras 2026',
-            texto: 'Vení a descubrir tu vocación charlando con profesionales de nuestra comunidad.',
-            botonTexto: 'Más info',
-            botonLink: 'proyectos.html#expocarreras'
         }
     ];
 
-    // 2. MOTOR DE BÚSQUEDA Y REGLA ANTI-SPAM
-    const hoyStr = new Date().toLocaleDateString('en-CA'); // Formato YYYY-MM-DD
-    const campañaActiva = campañasLAGRAM.find(c => hoyStr >= c.inicio && hoyStr <= c.fin);
+    // 2. ELEGIR LA CAMPAÑA Y REGLA ANTI-SPAM
+    const campañaActiva = campañasLAGRAM.find(c => c.activa);
     if (!campañaActiva) return;
 
     const claveVisto = `popup_${campañaActiva.id}`;
-    if (sessionStorage.getItem(claveVisto)) return;
+    let yaLoVio = false;
+    try { yaLoVio = !!sessionStorage.getItem(claveVisto); } catch { /* sin storage: se muestra */ }
+    if (yaLoVio) return;
 
     document.getElementById('popup-img').src = campañaActiva.imagen;
     document.getElementById('popup-titulo').textContent = campañaActiva.titulo;
@@ -252,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cerrar (con la X, tocando afuera o con Escape) y recordar que ya se vio
     const cerrar = () => {
         popup.classList.remove('popup-overlay--activo');
-        sessionStorage.setItem(claveVisto, 'true');
+        try { sessionStorage.setItem(claveVisto, 'true'); } catch { /* sin storage */ }
     };
     document.getElementById('btn-cerrar-popup').addEventListener('click', cerrar);
     btn.addEventListener('click', cerrar);

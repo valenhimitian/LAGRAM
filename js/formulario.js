@@ -49,6 +49,37 @@ function formatearPrecio(numero) {
 }
 
 /**
+ * Muestra el aviso que corresponde al estado de la inscripción y oculta el
+ * formulario si no se puede anotar. Devuelve true si el formulario queda visible.
+ * Necesita un <div id="aviso-estado" hidden> en la página.
+ */
+function mostrarAvisoDeEstado(form, estado, ventana) {
+    const aviso = document.getElementById("aviso-estado");
+    const redes = `<a href="https://www.instagram.com/lagramoficial" target="_blank" rel="noopener">nuestras redes</a>`;
+    let html = "";
+
+    if (estado === "proximamente") {
+        html = ventana.desde
+            ? `<p><strong>Las inscripciones abren el ${formatearFecha(ventana.desde)}.</strong>
+               Mientras tanto, podés leer toda la info y seguir ${redes} para no perderte nada.</p>`
+            : `<p><strong>Las inscripciones todavía no están abiertas.</strong>
+               Seguí ${redes} para enterarte cuándo abren.</p>`;
+    } else if (estado === "cerrada") {
+        html = `<p><strong>Las inscripciones están cerradas.</strong> ¡Seguí ${redes} para enterarte de lo que viene!</p>`;
+    } else if (estado === "lista-espera") {
+        html = `<p><strong>¡Importante!</strong> La fecha de inscripción ya terminó, pero todavía podés anotarte:
+                vas a entrar automáticamente a la lista de espera y te contactamos si se libera un cupo.</p>`;
+    }
+
+    aviso.innerHTML = html;
+    aviso.hidden = !html;
+
+    const sePuedeAnotar = estado === "abierta" || estado === "lista-espera";
+    form.hidden = !sePuedeAnotar;
+    return sePuedeAnotar;
+}
+
+/**
  * Activa un formulario de inscripción.
  * @param {HTMLFormElement} form
  * @param {object} opciones

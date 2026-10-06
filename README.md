@@ -70,6 +70,20 @@ de inscripciones de verano. Un panel de administración en Spring Boot queda com
 
 ---
 
+## 🗓️ Inscripciones: cómo se abren y cierran
+
+Las inscripciones se abren y cierran **solas** según las fechas cargadas en `js/datos.js`
+(`TEMPORADA.inscripcion` para los campamentos de 10 a 18 y `FILO.inscripcion` para FILO).
+Sin fechas cargadas, todas quedan en "próximamente" y no se muestra ningún formulario.
+El mismo estado controla los botones de Proyectos, el pop-up del Inicio y los formularios.
+
+**Para probar sin tocar el código:**
+
+* `?demo` en cualquier URL → muestra los formularios aunque estén cerrados, durante toda la visita (con un cartel de "Vista previa"). `?demo=no` lo apaga.
+* `?hoy=2026-12-05` → simula que hoy es esa fecha, para ver cómo se comporta la página antes, durante y después de las inscripciones.
+
+---
+
 ## 🔮 Próximos Pasos
 
 * [x] Unificar los datos de eventos en una sola fuente (`js/datos.js`)

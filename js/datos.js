@@ -11,7 +11,8 @@
    - slug:        identificador corto, se usa en URLs y en los id del HTML
    - tipo:        "campamento" (zona principal en zigzag) o "iniciativa" (grilla)
    - destacado:   true = aparece en las tarjetas del Inicio
-   - inscripcion: true = muestra el botón "Inscribirme"
+   - inscripcion: true = tiene formulario online. El botón "Inscribirme" aparece
+                  solo mientras las inscripciones estén abiertas (ver fechas más abajo)
    - formulario:  (opcional) página de inscripción propia; si no está, usa inscripcion.html
    - imagen:      ruta de la foto, o null si todavía no hay foto
    - edades:      (opcional) franja de edad que se muestra como etiqueta
@@ -52,7 +53,7 @@ const EVENTOS = [
         imagen: "assets/img/22-26.jpg",
         descripcion: "Este campamento invita a hacer una pausa en la carrera de la vida para revisar el camino y ganar impulso para seguir avanzando.",
         destacado: false,
-        inscripcion: true
+        inscripcion: false   // Todavía no tiene formulario online
     },
     {
         slug: "filo",
@@ -116,27 +117,37 @@ const EVENTOS = [
 ];
 
 /* =========================================
-   TEMPORADA DE INSCRIPCIÓN ACTUAL
+   FECHAS DE INSCRIPCIÓN
    -----------------------------------------
-   Esto se edita cada temporada. Lo que está en null se muestra
-   como "a confirmar" en la página de inscripción.
+   Las inscripciones se abren y cierran SOLAS según estas fechas.
+   Nadie tiene que acordarse de "prender" o "apagar" nada.
 
-   estado:
-   - "abierta":     se puede anotar normalmente
-   - "lista-espera": se puede anotar, pero entra a la lista de espera
-   - "cerrada":     el formulario no se muestra
+   inscripcion: {
+       desde: "AAAA-MM-DD",          primer día para anotarse
+       hasta: "AAAA-MM-DD",          último día para anotarse
+       listaEsperaHasta: "AAAA-MM-DD" (opcional) después de "hasta" se puede
+                                      seguir anotando, pero entra a lista de espera
+   }
+
+   Según la fecha de hoy, cada inscripción queda en uno de estos estados:
+   - Sin fechas cargadas  → "proximamente" (no se muestra el formulario)
+   - Antes de "desde"     → "proximamente" (avisa cuándo abre)
+   - Entre desde y hasta  → "abierta"
+   - Hasta listaEspera    → "lista-espera"
+   - Después              → "cerrada"
 ========================================= */
+
+/* ---------- CAMPAMENTOS DE 10 A 18 ---------- */
 const TEMPORADA = {
     nombre: "Campamentos de Verano 2027",
-    estado: "abierta",
+    inscripcion: { desde: null, hasta: null, listaEsperaHasta: null },
     lugar: 'Parque "El Sembrador", Máximo Paz, Buenos Aires',
     salida: "Los micros salen de Irigoyen y Tinogasta, Villa Real, CABA (Escuela ECEA)",
-    inscripcion: { desde: null, hasta: null },  // ej: "2026-12-01"
-    sorteo: null,                               // fecha en que se avisa quién quedó
     diasParaPagar: 5,
     contacto: "+54 9 11 6376-5990",
 
     // Una entrada por campamento. edadMin/edadMax arman la lista de edades del formulario.
+    // fechas: texto libre (ej: "22 al 25 de enero"), costo: número (ej: 150000)
     campamentos: [
         { slug: "10-12", edadMin: 10, edadMax: 12, fechas: null, costo: null },
         { slug: "13-15", edadMin: 13, edadMax: 15, fechas: null, costo: null },
@@ -144,16 +155,12 @@ const TEMPORADA = {
     ]
 };
 
-/* =========================================
-   FILO (retiro del Equipo de Trabajo)
-   -----------------------------------------
-   Lo que está en null se muestra como "a confirmar".
-   Fechas en formato "AAAA-MM-DD", horas como texto ("19hs").
-========================================= */
+/* ---------- FILO (retiro del Equipo de Trabajo) ---------- */
+// Lo que está en null se muestra como "a confirmar". Horas como texto ("19hs").
 const FILO = {
     nombre: "FILO 2027",
-    estado: "abierta",            // "abierta" | "cerrada"
-    desde: null,                  // día de salida, ej: "2027-04-29"
+    inscripcion: { desde: null, hasta: null, listaEsperaHasta: null },
+    desde: null,                  // día de salida del retiro, ej: "2027-04-29"
     hasta: null,                  // día de regreso
     horaSalidaECEA: null,         // ej: "19hs"
     horaLlegadaParque: null,      // ej: "21hs"

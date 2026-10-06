@@ -64,11 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
         a.textContent = FILO.contacto;
     });
 
-    if (FILO.estado === "cerrada") {
-        document.getElementById("aviso-estado").hidden = false;
-        form.hidden = true;
-        return;
-    }
+    /* ---------- ESTADO DE LAS INSCRIPCIONES ---------- */
+    // Se calcula con las fechas de FILO.inscripcion (ver js/script.js)
+
+    const estado = estadoVisible(FILO.inscripcion);
+    if (!mostrarAvisoDeEstado(form, estado, FILO.inscripcion)) return;
 
     /* ---------- 2. ACTIVAR EL FORMULARIO ---------- */
 
@@ -86,7 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 iglesia: texto("iglesia"),
                 traslado: d.get("traslado"),
                 dieta: d.get("dieta"),
-                comentarios: texto("comentarios")
+                comentarios: texto("comentarios"),
+                lista_espera: estado === "lista-espera"
             };
         }
     });
