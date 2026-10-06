@@ -2010,3 +2010,21 @@ a.tarjeta-iniciativa:hover .tarjeta-iniciativa__mas {
 .pagina-inscripcion {
     min-height: 75vh;
 }
+
+/* Crédito discreto al final de la página de Equipo */
+.credito-web {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #9aa3a6;
+    margin: -2rem auto 0;
+}
+
+.credito-web a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.credito-web a:hover {
+    color: var(--color-secundario);
+}
