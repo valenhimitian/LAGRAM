@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="¿Querés servir en los campamentos de LAGRAM? Conocé las áreas del Equipo de Trabajo y anotate.">
+    <meta property="og:title" content="Sumate al equipo | LAGRAM">
+    <meta property="og:description" content="¿Querés servir en los campamentos de LAGRAM? Conocé las áreas del Equipo de Trabajo y anotate.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+    <meta name="theme-color" content="#2DA6AE">
+    <title>Sumate al equipo | LAGRAM</title>
+    <link rel="icon" type="image/png" href="assets/img/iso.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    
+    <link rel="stylesheet" href="assets/css/estilos.css">
+</head>
+<body>
+
+    
+   <header class="header">
+    <div class="header__contenedor">
+        <!-- Logo -->
+        <a href="index.html" class="header__logo-link">
+            <img src="assets/img/iso.png" alt="Logo de LAGRAM" class="header__logo">
+        </a>
+
+        <!-- Botón de Hamburguesa (Solo visible en mobile) -->
+        <button class="header__hamburguesa" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-nav">
+            <span class="header__hamburguesa-linea"></span>
+            <span class="header__hamburguesa-linea"></span>
+            <span class="header__hamburguesa-linea"></span>
+        </button>
+
+        <!-- Navegación -->
+        <nav class="header__nav" id="menu-nav">
+            <ul class="header__menu">
+                <li><a href="index.html" class="header__link">Inicio</a></li>
+                <li><a href="proyectos.html" class="header__link">Proyectos</a></li>
+                <li><a href="equipo.html" class="header__link">Equipo</a></li>
+                <li><a href="#footer" class="header__link">Redes</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main class="pagina-inscripcion pagina-sumate">
+
+        <!-- Encabezado con foto: se cambia la foto en background-image y el encuadre vertical en background-position -->
+        <section class="encabezado" style="background-image: url('assets/img/FILO.jpg'); background-position: center 50%;">
+            <div class="encabezado__contenido">
+                <span class="encabezado__etiqueta">Equipo de Trabajo</span>
+                <h1 class="encabezado__titulo">Sumate al equipo</h1>
+                <p class="encabezado__texto">¿Querés servir en los campamentos? Te contamos un poquito de cada área.</p>
+            </div>
+        </section>
+
+        <!-- =========================================
+             ÁREAS (se dibujan desde EQUIPO_TRABAJO.areas en js/datos.js)
+        ========================================= -->
+        <section class="sumate-areas" aria-labelledby="titulo-areas">
+            <h2 class="sumate__titulo" id="titulo-areas">Las áreas</h2>
+            <div class="sumate-areas__grid" id="grid-areas"></div>
+        </section>
+
+        <!-- =========================================
+             REQUISITOS Y CÓMO FUNCIONA
+        ========================================= -->
+        <section class="sumate-info">
+            <div class="sumate-info__bloque">
+                <h2 class="sumate__titulo">¿Quiénes pueden sumarse?</h2>
+                <ul class="sumate-lista">
+                    <li><strong>Ser parte de una iglesia evangélica.</strong></li>
+                    <li><strong>Tener un referente pastoral:</strong> alguien de tu iglesia (u otro espacio) con quien LAGRAM se pueda comunicar para conocerte un poco más.</li>
+                    <li><strong>Tener la edad mínima</strong> del campamento al que te anotás. <span id="edades-minimas">Las edades mínimas de cada campamento están a confirmar.</span></li>
+                    <li><strong>No hace falta haber ido como acampante.</strong></li>
+                </ul>
+            </div>
+
+            <div class="sumate-info__bloque">
+                <h2 class="sumate__titulo">¿Cómo funciona?</h2>
+                <ol class="sumate-pasos">
+                    <li><strong>Te anotás</strong> eligiendo a qué campamentos podés ir, el área en la que querés servir y en qué otras áreas podrías estar si no quedás en esa.</li>
+                    <li><strong>Nos comunicamos con tu referente</strong> para conocerte un poco más.</li>
+                    <li><strong>Te confirmamos tu lugar</strong> y el área. El equipo también paga el campamento, con un valor menor que el de los acampantes.</li>
+                    <li><strong>Te capacitamos:</strong> antes del campamento hay capacitaciones con material incluido.</li>
+                </ol>
+                <p class="sumate-nota">Y además, todos los que sirven en los campamentos pueden sumarse a <a href="inscripcion-filo.html">FILO</a>, el retiro del Equipo de Trabajo.</p>
+            </div>
+        </section>
+
+        <div class="inscripcion" id="formulario-equipo">
+
+            <!-- Aviso de estado: abre pronto / cerrada / lista de espera (lo completa el JS) -->
+            <div class="inscripcion-aviso inscripcion-aviso--destacado" id="aviso-estado" hidden></div>
+
+            <!-- =========================================
+                 FORMULARIO (3 pasos) · PILOTO
+                 Basado en el de FILO hasta tener el formulario real del equipo.
+            ========================================= -->
+            <form class="formulario" id="form-equipo" novalidate>
+
+                <div class="formulario__progreso">
+                    <p class="formulario__paso-texto" aria-live="polite"></p>
+                    <div class="formulario__barra"><div class="formulario__barra-relleno"></div></div>
+                </div>
+
+                <!-- PASO 1: Tus datos -->
+                <fieldset class="formulario__paso" data-paso="1">
+                    <legend class="formulario__titulo">Tus datos</legend>
+
+                    <div class="campo-fila">
+                        <div class="campo" data-campo="nombre">
+                            <label class="campo__label" for="nombre">Nombre <span class="campo__req">*</span></label>
+                            <input type="text" id="nombre" name="nombre" autocomplete="given-name" required maxlength="60">
+                            <p class="campo__error" aria-live="polite"></p>
+                        </div>
+                        <div class="campo" data-campo="apellido">
+                            <label class="campo__label" for="apellido">Apellido <span class="campo__req">*</span></label>
+                            <input type="text" id="apellido" name="apellido" autocomplete="family-name" required maxlength="60">
+                            <p class="campo__error" aria-live="polite"></p>
+                        </div>
+                    </div>
+
+                    <div class="campo-fila">
+                        <div class="campo" data-campo="fecha_nacimiento">
+                            <label class="campo__label" for="fecha_nacimiento">Fecha de nacimiento <span class="campo__req">*</span></label>
+                            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" autocomplete="bday" required>
+                            <p class="campo__error" aria-live="polite"></p>
+                        </div>
+                        <div class="campo" data-campo="dni">
+                            <label class="campo__label" for="dni">DNI <span class="campo__req">*</span></label>
+                            <input type="text" id="dni" name="dni" inputmode="numeric" required maxlength="10" placeholder="Sin puntos">
+                            <p class="campo__error" aria-live="polite"></p>
+                        </div>
+                    </div>
+
+                    <div class="campo-fila">
+                        <div class="campo" data-campo="celular">
+                            <label class="campo__label" for="celular">Tu WhatsApp <span class="campo__req">*</span></label>
+                            <input type="tel" id="celular" name="celular" autocomplete="tel" required placeholder="Ej: 11 6376 5990">
+                            <p class="campo__error" aria-live="polite"></p>
+                        </div>
+                        <div class="campo" data-campo="email">
+                            <label class="campo__label" for="email">Tu email</label>
+                            <input type="email" id="email" name="email" autocomplete="email" maxlength="120">
+                            <p class="campo__error" aria-live="polite"></p>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- PASO 2: Dónde querés servir -->
+                <fieldset class="formulario__paso" data-paso="2" hidden>
+                    <legend class="formulario__titulo">Dónde querés servir</legend>
+
+                    <div class="campo" data-campo="campamentos">
+                        <p class="campo__label" id="label-campamentos">¿A qué campamentos podés ir? <span class="campo__req">*</span></p>
+                        <p class="campo__ayuda">Podés marcar todos los que quieras, siempre que tengas la edad mínima de cada uno.</p>
+                        <div class="opciones opciones--grilla" role="group" aria-labelledby="label-campamentos" id="opciones-campamentos-equipo">
+                            <!-- Se generan desde js/datos.js -->
+                        </div>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo" data-campo="area">
+                        <p class="campo__label" id="label-area">¿En qué área querés servir? <span class="campo__req">*</span></p>
+                        <div class="opciones opciones--grilla" role="radiogroup" aria-labelledby="label-area" id="opciones-area">
+                            <!-- Se generan desde js/datos.js -->
+                        </div>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo" data-campo="otras_areas">
+                        <p class="campo__label" id="label-otras">Si no quedás en esa, ¿en qué otras áreas podrías estar? <span class="campo__req">*</span></p>
+                        <div class="opciones opciones--grilla" role="group" aria-labelledby="label-otras" id="opciones-otras-areas">
+                            <!-- Se generan desde js/datos.js -->
+                        </div>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo" data-campo="sirvio_antes">
+                        <p class="campo__label" id="label-sirvio">¿Ya serviste en algún equipo de LAGRAM? <span class="campo__req">*</span></p>
+                        <div class="opciones opciones--fila" role="radiogroup" aria-labelledby="label-sirvio">
+                            <label class="opcion"><input type="radio" name="sirvio_antes" value="si" required><span>Sí</span></label>
+                            <label class="opcion"><input type="radio" name="sirvio_antes" value="no"><span>No, sería mi primera vez</span></label>
+                        </div>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo" data-campo="experiencia" data-mostrar-si="sirvio_antes=si" hidden>
+                        <label class="campo__label" for="experiencia">¿En qué área y en qué año?</label>
+                        <input type="text" id="experiencia" name="experiencia" maxlength="150" placeholder="Ej: Recreación en el 13 a 15 de 2025">
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+                </fieldset>
+
+                <!-- PASO 3: Iglesia y referente -->
+                <fieldset class="formulario__paso" data-paso="3" hidden>
+                    <legend class="formulario__titulo">Tu iglesia y tu referente</legend>
+
+                    <div class="campo" data-campo="iglesia">
+                        <label class="campo__label" for="iglesia">¿De qué iglesia formás parte? <span class="campo__req">*</span></label>
+                        <input type="text" id="iglesia" name="iglesia" required maxlength="100">
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="formulario__destacado">
+                        <h3>Tu referente pastoral</h3>
+                        <p>Es una persona de tu iglesia (u otro espacio) con quien LAGRAM se pueda comunicar para conocerte un poco más.</p>
+
+                        <div class="campo-fila">
+                            <div class="campo" data-campo="referente_nombre">
+                                <label class="campo__label" for="referente_nombre">Nombre y apellido <span class="campo__req">*</span></label>
+                                <input type="text" id="referente_nombre" name="referente_nombre" required maxlength="100">
+                                <p class="campo__error" aria-live="polite"></p>
+                            </div>
+                            <div class="campo" data-campo="referente_vinculo">
+                                <label class="campo__label" for="referente_vinculo">¿Qué rol tiene? <span class="campo__req">*</span></label>
+                                <input type="text" id="referente_vinculo" name="referente_vinculo" required maxlength="80" placeholder="Ej: pastor, líder de jóvenes">
+                                <p class="campo__error" aria-live="polite"></p>
+                            </div>
+                        </div>
+
+                        <div class="campo" data-campo="referente_celular">
+                            <label class="campo__label" for="referente_celular">Su celular <span class="campo__req">*</span></label>
+                            <input type="tel" id="referente_celular" name="referente_celular" required placeholder="Ej: 11 6376 5990">
+                            <p class="campo__error" aria-live="polite"></p>
+                        </div>
+                    </div>
+
+                    <div class="campo" data-campo="dieta">
+                        <p class="campo__label" id="label-dieta">¿Tenés alguna dieta especial? <span class="campo__req">*</span></p>
+                        <p class="campo__ayuda">Contanos si tenés alguna alergia o restricción médica a ciertos alimentos.</p>
+                        <div class="opciones" role="radiogroup" aria-labelledby="label-dieta">
+                            <label class="opcion"><input type="radio" name="dieta" value="ninguna" required><span>No</span></label>
+                            <label class="opcion"><input type="radio" name="dieta" value="vegetariana"><span>Dieta vegetariana</span></label>
+                            <label class="opcion"><input type="radio" name="dieta" value="vegana"><span>Dieta vegana</span></label>
+                            <label class="opcion"><input type="radio" name="dieta" value="celiaca"><span>Dieta Celíaca (sin TACC)</span></label>
+                            <label class="opcion"><input type="radio" name="dieta" value="otra"><span>Otra</span></label>
+                        </div>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo" data-campo="dieta_detalle" data-mostrar-si="dieta!=ninguna" hidden>
+                        <label class="campo__label" for="dieta_detalle">Especificá nivel de tolerancia, cuidado especial o cualquier otro detalle relevante</label>
+                        <textarea id="dieta_detalle" name="dieta_detalle" rows="3" maxlength="500"></textarea>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo" data-campo="comentarios">
+                        <label class="campo__label" for="comentarios">¿Hay algo más que nos quieras contar?</label>
+                        <textarea id="comentarios" name="comentarios" rows="3" maxlength="1000"></textarea>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+
+                    <div class="campo" data-campo="consentimiento">
+                        <label class="opcion opcion--check">
+                            <input type="checkbox" name="consentimiento" value="si" required>
+                            <span>Estoy de acuerdo en que LAGRAM use estos datos únicamente para gestionar mi inscripción al Equipo de Trabajo y que se comunique con mi referente.</span>
+                        </label>
+                        <p class="campo__error" aria-live="polite"></p>
+                    </div>
+                </fieldset>
+
+                <div class="formulario__acciones">
+                    <button type="button" class="btn btn--secundario" data-accion="anterior" hidden>Anterior</button>
+                    <button type="button" class="btn btn--primario" data-accion="siguiente">Continuar</button>
+                    <button type="submit" class="btn btn--primario" data-accion="enviar" hidden>Enviar inscripción</button>
+                </div>
+                <p class="formulario__error-general" role="alert"></p>
+            </form>
+
+            <section class="formulario-exito" id="formulario-exito" hidden tabindex="-1">
+                <h2>¡Gracias por querer sumarte!</h2>
+                <p>Recibimos tu inscripción al Equipo de Trabajo. En los próximos días nos vamos a comunicar con tu referente y después con vos por WhatsApp.</p>
+                <a href="index.html" class="btn btn--secundario">Volver al inicio</a>
+            </section>
+        </div>
+    </main>
+
+
+    <footer class="footer" id="footer">
+        <div class="footer__contenedor">
+
+            <div class="footer__columna">
+                <img src="assets/img/iso.png" alt="Logo LAGRAM" class="footer__logo">
+                <p class="footer__descripcion">Acompañando a los adolescentes a crecer de manera integral, en una
+                    relación cercana y continua con Jesús.</p>
+            </div>
+
+            <div class="footer__columna">
+                <h4 class="footer__titulo">Navegación</h4>
+                <ul class="footer__links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="equipo.html">Equipo</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: El Mapa -->
+            <div class="footer__columna">
+                <h4 class="footer__titulo">¿Dónde son los campamentos?</h4>
+                <div class="footer__mapa">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3270.274318870614!2d-58.596475151065064!3d-34.949732598355894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcd87e0a44ce57%3A0x9e309571b2313253!2sParque%20Cristiano%20El%20Sembrador!5e0!3m2!1ses-419!2sar!4v1786031067845!5m2!1ses-419!2sar"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Columna 4: Redes y Contacto -->
+            <div class="footer__columna">
+                <h4 class="footer__titulo">Nuestras Redes</h4>
+
+                <div class="footer__social footer__social--vertical">
+                    <a href="https://www.instagram.com/lagramoficial" target="_blank" rel="noopener">
+                        <img src="assets/img/instagram.svg" alt="" aria-hidden="true">
+                        <span>@lagramoficial</span>
+                    </a>
+                    <a href="https://www.facebook.com/lagramoficial" target="_blank" rel="noopener">
+                        <img src="assets/img/facebook-footer.svg" alt="" aria-hidden="true">
+                        <span>/lagramoficial</span>
+                    </a>
+                    <a href="https://wa.me/5491163765990" target="_blank" rel="noopener">
+                        <img src="assets/img/whatsapp-footer.svg" alt="" aria-hidden="true">
+                        <span>+54 9 11 6376-5990</span>
+                    </a>
+                    <a href="mailto:info@lagram.com.ar">
+                        <img src="assets/img/gmail-footer.svg" alt="" aria-hidden="true">
+                        <span>info@lagram.com.ar</span>
+                    </a>
+                    <a href="https://open.spotify.com/user/lagramoficial?si=a2e627d1a4cd45a8" target="_blank" rel="noopener">
+                        <img src="assets/img/spotify-footer.svg" alt="" aria-hidden="true">
+                        <span>LAGRAM en Spotify</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer__copyright">
+            <p>&copy; 2026 LAGRAM</p>
+        </div>
+    </footer>
+
+    <script src="js/datos.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/formulario.js"></script>
+    <script src="js/sumate.js"></script>
+</body>
+</html>

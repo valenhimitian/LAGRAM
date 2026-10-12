@@ -91,6 +91,8 @@ El mismo estado controla los botones de Proyectos, el pop-up del Inicio y los fo
 * [x] Formulario de inscripción propio con validación (10 a 18)
 * [x] Formulario de pre-inscripción a FILO
 * [x] Formulario del 22 a 26
+* [x] Página "Sumate al equipo" con las áreas y formulario piloto del Equipo de Trabajo
+* [ ] Formulario real del Equipo de Trabajo (cuando LAGRAM pase el actual)
 * [ ] Tablas `eventos` e `inscripciones` en Supabase con políticas RLS
 * [ ] Conectar el frontend a Supabase (`js/api.js`) y reemplazar `js/datos.js`
 * [ ] Deploy en Netlify con el dominio de LAGRAM

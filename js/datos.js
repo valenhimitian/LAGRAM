@@ -173,9 +173,9 @@ const EVENTOS = [
    }
 
    Según la fecha de hoy, cada inscripción queda en uno de estos estados:
-   - Sin fechas cargadas  → "proximamente" (no se muestra el formulario)
+   - Sin "desde"          → "proximamente" (no se muestra el formulario)
    - Antes de "desde"     → "proximamente" (avisa cuándo abre)
-   - Entre desde y hasta  → "abierta"
+   - Entre desde y hasta  → "abierta" (si no hay "hasta", queda abierta desde "desde")
    - Hasta listaEspera    → "lista-espera"
    - Después              → "cerrada"
 ========================================= */
@@ -226,4 +226,72 @@ const FILO = {
     costo: null,                  // ej: 120000
     diasParaPagar: 5,
     contacto: "+54 9 11 6376-5990"
+};
+
+/* =========================================
+   EQUIPO DE TRABAJO (página sumate.html)
+   -----------------------------------------
+   Las inscripciones del equipo abren ANTES que las de acampantes.
+   Si hay "desde" pero no "hasta", quedan abiertas desde ese día
+   hasta que se cargue una fecha de cierre.
+========================================= */
+const EQUIPO_TRABAJO = {
+    nombre: "Equipo de Trabajo · Verano 2027",
+    inscripcion: { desde: "2026-11-01", hasta: null, listaEsperaHasta: null },   // Fecha publicada en el Instagram de LAGRAM
+    contacto: "+54 9 11 6376-5990",
+
+    // A qué campamentos se puede ir a servir. edadMinima: null = a confirmar
+    campamentos: [
+        { slug: "10-12", nombre: "Campamento 10 a 12", edadMinima: null },
+        { slug: "13-15", nombre: "Campamento 13 a 15", edadMinima: null },
+        { slug: "16-18", nombre: "Campamento 16 a 18", edadMinima: null },
+        { slug: "22-26", nombre: "Campamento 22 a 26", edadMinima: null }
+    ],
+
+    // Textos del posteo de Instagram de LAGRAM sobre cada área
+    // (fotos recortadas del posteo: pedir las originales para mejor calidad)
+    areas: [
+        {
+            slug: "lideres",
+            nombre: "Líderes de pieza",
+            imagen: "assets/img/areas/lideres.jpg",
+            descripcion: "Los líderes comparten habitación con los acampantes, generan espacios de confianza y los acompañan. También guían los devocionales en grupos pequeños, creando espacios para conocernos más y crecer juntos en Jesús."
+        },
+        {
+            slug: "recreacion",
+            nombre: "Recreación",
+            imagen: "assets/img/areas/recreacion.jpg",
+            descripcion: "Este equipo crea juegos y dinámicas que desafían distintas destrezas, fomentan la participación y nos ayudan a integrarnos. El objetivo es mostrar a un Jesús que se divierte, juega y ríe con nosotros."
+        },
+        {
+            slug: "alabanza",
+            nombre: "Alabanza",
+            imagen: "assets/img/areas/alabanza.jpg",
+            descripcion: "Generan un espacio para cantar, adorar y poner nuestra mirada en Jesús. A través de la música, este equipo nos guía a expresar lo que hay en nuestro corazón, recordar quién es Dios y disfrutar juntos de Su presencia."
+        },
+        {
+            slug: "periferia",
+            nombre: "Periferia",
+            imagen: "assets/img/areas/periferia.jpg",
+            descripcion: "Los que están detrás de escena para que todo suceda. Los peris ayudan a limpiar, servir la comida, ordenar, colaborar en los juegos, y un montón de cosas más. ¡Sin ellos el campamento no funciona!"
+        },
+        {
+            slug: "cocina",
+            nombre: "Cocina",
+            imagen: "assets/img/areas/cocina.jpg",
+            descripcion: "Junto con periferia, se encarga de preparar todas las comidas del campamento y de que siempre haya algo rico para compartir. También trabaja en equipo con administración para que no falte ningún ingrediente."
+        },
+        {
+            slug: "multimedia",
+            nombre: "Multiperimedia",
+            imagen: "assets/img/areas/multimedia.jpg",
+            descripcion: "Este equipo está detrás de la musicalización, el sonido, las proyecciones y la iluminación. Se encarga de todos esos detalles técnicos que ayudan a que cada actividad sea aún más épica."
+        },
+        {
+            slug: "administracion",
+            nombre: "Administración",
+            imagen: "assets/img/areas/administracion.jpg",
+            descripcion: "El/la admin se encarga de administrar los recursos económicos, conseguir lo necesario para que las actividades se desarrollen y llevar adelante las tareas de secretaría. Organizar, prever y resolver para que todo esté listo cuando se necesita."
+        }
+    ]
 };

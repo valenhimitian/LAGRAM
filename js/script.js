@@ -59,8 +59,9 @@ function hoyISO() {
  */
 function estadoInscripcion(ventana) {
     const hoy = hoyISO();
-    if (!ventana || !ventana.desde || !ventana.hasta) return "proximamente";
+    if (!ventana || !ventana.desde) return "proximamente";
     if (hoy < ventana.desde) return "proximamente";
+    if (!ventana.hasta) return "abierta";          // Abre en "desde" y sigue abierta hasta que se cargue un cierre
     if (hoy <= ventana.hasta) return "abierta";
     if (ventana.listaEsperaHasta && hoy <= ventana.listaEsperaHasta) return "lista-espera";
     return "cerrada";
@@ -236,7 +237,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "evento": "proyectos",
         "inscripcion": "proyectos",
         "inscripcion-22-26": "proyectos",
-        "inscripcion-filo": "proyectos"
+        "inscripcion-filo": "proyectos",
+        "sumate": "equipo"
     };
     const pagina = normalizar(location.pathname);
     const paginaActual = seccionDe[pagina] || pagina;
@@ -308,6 +310,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const campamentos = estadoVisible(TEMPORADA.inscripcion);
     const filo = estadoVisible(FILO.inscripcion);
     const c2226 = estadoVisible(CAMPA_22_26.inscripcion);
+    const equipo = estadoVisible(EQUIPO_TRABAJO.inscripcion);
+    const abreEquipo = EQUIPO_TRABAJO.inscripcion.desde;
     const abreCampamentos = TEMPORADA.inscripcion.desde;
 
     const campañasLAGRAM = [
@@ -332,6 +336,15 @@ document.addEventListener('DOMContentLoaded', () => {
             botonLink: 'inscripcion-22-26.html'
         },
         {
+            id: 'inscripciones-equipo',
+            activa: seAceptanInscripciones(equipo),
+            imagen: 'assets/img/areas/recreacion.jpg',
+            titulo: '¡Sumate al Equipo de Trabajo!',
+            texto: 'Ya están abiertas las inscripciones para servir en los campamentos de verano. Conocé las áreas y anotate.',
+            botonTexto: 'Quiero sumarme',
+            botonLink: 'sumate.html'
+        },
+        {
             id: 'inscripciones-filo',
             activa: seAceptanInscripciones(filo),
             imagen: 'assets/img/FILO.jpg',
@@ -339,6 +352,17 @@ document.addEventListener('DOMContentLoaded', () => {
             texto: 'El retiro del Equipo de Trabajo. Tiempo de recargar energías, capacitarnos y buscar a Dios juntos.',
             botonTexto: 'Pre-inscribirme',
             botonLink: 'inscripcion-filo.html'
+        },
+        {
+            id: 'previa-equipo',
+            activa: equipo === 'proximamente' && !!abreEquipo,
+            imagen: 'assets/img/areas/lideres.jpg',
+            titulo: '¿Querés sumarte al equipo?',
+            texto: abreEquipo
+                ? `Las inscripciones para el Equipo de Trabajo de los campamentos de verano abren el ${formatearDia(abreEquipo)}. ¡Agendalo!`
+                : '',
+            botonTexto: 'Conocé las áreas',
+            botonLink: 'sumate.html'
         },
         {
             id: 'previa-campamentos',

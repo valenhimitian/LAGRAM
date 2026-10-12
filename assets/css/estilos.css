@@ -2028,3 +2028,174 @@ a.tarjeta-iniciativa:hover .tarjeta-iniciativa__mas {
 .credito-web a:hover {
     color: var(--color-secundario);
 }
+
+/* =========================================
+   SUMATE AL EQUIPO (sumate.html)
+========================================= */
+.sumate__titulo {
+    font-family: var(--fuente-titulos);
+    font-size: 1.8rem;
+    color: var(--color-texto);
+    margin-bottom: 1.5rem;
+}
+
+/* --- Áreas --- */
+.sumate-areas {
+    max-width: 1100px;
+    margin: 0 auto 4rem;
+    padding: 0 1.25rem;
+}
+
+.sumate-areas__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.area-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+.area-card__foto {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.area-card__cuerpo {
+    padding: 1.25rem;
+}
+
+.area-card__titulo {
+    font-size: 1.2rem;
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+}
+
+.area-card__texto {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+/* --- Requisitos y cómo funciona --- */
+.sumate-info {
+    max-width: 1100px;
+    margin: 0 auto 4rem;
+    padding: 0 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.sumate-info__bloque {
+    background: #f2f9f9;
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.sumate-info .sumate__titulo {
+    font-size: 1.35rem;
+    color: var(--color-secundario);
+    margin-bottom: 1rem;
+}
+
+.sumate-lista,
+.sumate-pasos {
+    color: #444;
+    line-height: 1.6;
+    padding-left: 1.2rem;
+}
+
+.sumate-lista li + li,
+.sumate-pasos li + li {
+    margin-top: 0.6rem;
+}
+
+.sumate-pasos li::marker {
+    font-weight: 700;
+    color: var(--color-primario);
+}
+
+.sumate-nota {
+    margin-top: 1.25rem;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.sumate-nota a {
+    color: var(--color-secundario);
+    font-weight: 600;
+}
+
+/* Opción deshabilitada (el área ya elegida como principal) */
+.opcion--deshabilitada {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .sumate-info {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .sumate-info__bloque {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .sumate__titulo {
+        font-size: 1.5rem;
+    }
+}
+
+/* Acceso a "Sumate al equipo" desde la página de Equipo */
+.equipo-sumate {
+    max-width: 1000px;
+    margin: 0 auto 5rem;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--color-secundario), #1f7d83);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.equipo-sumate h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.equipo-sumate p {
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.5;
+    max-width: 560px;
+}
+
+.equipo-sumate .btn {
+    flex-shrink: 0;
+}
+
+@media (max-width: 1060px) {
+    .equipo-sumate {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .equipo-sumate {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.75rem 1.25rem;
+    }
+}
