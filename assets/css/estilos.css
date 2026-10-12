@@ -2199,3 +2199,22 @@ a.tarjeta-iniciativa:hover .tarjeta-iniciativa__mas {
         padding: 1.75rem 1.25rem;
     }
 }
+
+/* "Sumate al equipo" en el menú: botón naranja para que se encuentre fácil */
+.header__link--destacado {
+    background-color: var(--color-primario);
+    color: #fff !important;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.header__link--destacado::after {
+    display: none; /* sin la línea de abajo */
+}
+
+.header__link--destacado:hover,
+.header__link--destacado.activo {
+    background-color: #e3821d;
+    transform: translateY(-2px);
+}

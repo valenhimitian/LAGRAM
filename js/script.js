@@ -237,8 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "evento": "proyectos",
         "inscripcion": "proyectos",
         "inscripcion-22-26": "proyectos",
-        "inscripcion-filo": "proyectos",
-        "sumate": "equipo"
+        "inscripcion-filo": "proyectos"
     };
     const pagina = normalizar(location.pathname);
     const paginaActual = seccionDe[pagina] || pagina;
